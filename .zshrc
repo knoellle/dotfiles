@@ -109,10 +109,6 @@ export MOZ_USE_XINPUT2=1
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# LARBS inheritance
-[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc" # Load shortcut aliases
-[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
-
 alias simrobert="optirun /home/mystery/hulks/nao/tools/SimRobot/build/SimRobot || simrobert-intel"
 alias simrobert-intel="/home/mystery/hulks/nao/tools/SimRobot/build/SimRobot"
 alias mate="/home/mystery/venv/hulks/bin/python /home/mystery/hulks/nao/tools/mate/run.py&!"
