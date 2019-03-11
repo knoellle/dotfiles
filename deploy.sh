@@ -13,6 +13,10 @@ ln -s ~/.dotfiles/.zshrc -T ~/.zshrc
 # .config
 ln -s ~/.dotfiles/.config/compton.conf ~/.config/compton.conf
 
+mkdir -p ~/.config/newsboat
+ln -s ~/.dotfiles/.config/newsboat/config ~/.config/newsboat/config
+ln -s ~/.dotfiles/.config/newsboat/urls ~/.config/newsboat/urls
+
 mkdir -p ~/.config/termite
 ln -s ~/.dotfiles/.config/termite/config ~/.config/termite/config
 
