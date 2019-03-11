@@ -1,0 +1,8 @@
+xrandr --output HDMI-1 --above eDP-1
+xset r rate 200 25
+setxkbmap -option
+setxkbmap -option caps:escape
+setxkbmap -option shift:both_capslock
+setxkbmap -option eurosign:e
+xmodmap -e "clear Lock"
+set r 66

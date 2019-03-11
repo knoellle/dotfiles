@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo Running "${@:2}" in $1 venv
+~/venv/$1/bin/python "${@:2}"

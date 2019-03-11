@@ -1,0 +1,5 @@
+#!/bin/sh
+# kill currently running compton
+pkill -u "$USER" -x "compton"
+# start compton again
+compton --shadow-exclude '!focused' &

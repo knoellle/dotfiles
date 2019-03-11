@@ -1,0 +1,41 @@
+#!/bin/sh
+#i3lock -c 000000 -p win -i $(ls ~/Pictures/lockscreens/*.png | shuf -n1) "$@"
+#i3lock -c 000000 -p win -i ~/Pictures/wallpapers/glitch-moon.png "$@"
+
+B='#00000000'  # blank
+C='#00000099'  # clear ish
+D='#ff00ff70'  # default
+T='#ee00eeee'  # text
+W='#00FF00bb'  # wrong
+V='#bb00bbbb'  # verifying
+Z='#FFFFFFFF'  # test
+
+i3lock \
+--insidevercolor=$B   \
+--ringvercolor=$V     \
+\
+--insidewrongcolor=$C \
+--ringwrongcolor=$W   \
+\
+--insidecolor=$C      \
+--ringcolor=$D        \
+--linecolor=$B        \
+--separatorcolor=$D   \
+\
+--verifcolor=$T        \
+--wrongcolor=$T        \
+--timecolor=$W        \
+--datecolor=$W        \
+--keyhlcolor=$W       \
+--bshlcolor=$W        \
+\
+--screen 1            \
+--radius=250          \
+--ring-width=15	      \
+--indpos='w/2+10:h/2' \
+--clock         \
+--indicator           \
+--timestr="%H:%M %Z"  \
+--datestr="%A, %m %Y" \
+--refresh-rate=60      \
+-i ~/Pictures/wallpapers/glitch-moon-1366x768.png_
