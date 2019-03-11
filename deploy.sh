@@ -7,6 +7,7 @@ SCRIPTPATH=`dirname $SCRIPT`
 ln -s $SCRIPTPATH -T ~/.dotfiles
 
 ln -s ~/.dotfiles/.profile -T ~/.profile
+ln -s ~/.profile -T ~/.zprofile
 ln -s ~/.dotfiles/.zshrc -T ~/.zshrc
 
 # .config
