@@ -6,6 +6,7 @@ SCRIPTPATH=`dirname $SCRIPT`
 # set up fixed location for the dotfile repo
 ln -s $SCRIPTPATH -T ~/.dotfiles
 
+ln -s ~/.dotfiles/.profile -T ~/.profile
 ln -s ~/.dotfiles/.zshrc -T ~/.zshrc
 
 # .config
