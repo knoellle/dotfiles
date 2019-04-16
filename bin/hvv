@@ -24,7 +24,7 @@ class HVVAuth(AuthBase):
 
     def __call__(self, r):
         # modify and return the request
-        r.headers['geofox-auth-signature'] = self.sig
+        r.headers['geofox-auth-signature'] = self.sig.decode("UTF-8")
         r.headers['geofox-auth-user'] = self.username
         return r
 
@@ -44,9 +44,9 @@ class HVVClient(object):
         )
 
     def findStation(self, name):
-        data = {"version":32,"language":"de","theName":{"name":"","city":"","type":"UNKNOWN"},"maxList":15,"allowTypeSwitch":True}
+        data = {"version":34,"language":"en","theName":{"name":"","city":"","type":"UNKNOWN"},"maxList":15,"allowTypeSwitch":True}
         data["theName"]["name"] = name
-        r = self.session.post("https://www.hvv.de/geofox/checkName", json=data)
+        r = self.session.post("https://geofox.hvv.de/gti/restapp/checkName", json=data, auth=HVVAuth(data))
         try:
             js = r.json()
         except Exception as e:
@@ -64,7 +64,7 @@ class HVVClient(object):
             "time": "{:%H:%M}".format(time)
         }
         # default search settings
-        data = {"version":32,"language":"en","start":{},"dest":{},"toStartBy":"FOOTPATH","toDestBy":"FOOTPATH","time":{"date":"29.10.2018","time":"13:58"},"timeIsDeparture":True,"schedulesBefore":0,"schedulesAfter":4,"intermediateStops":True,"tariffInfoSelector":[{"tariff":"HVV","tariffRegions":False,"kinds":["1"]},{"tariff":"SH","tariffRegions":False,"kinds":["1"]}],"penalties":[{"name":"desiredType","value":"longdistancebus,fasttrain&extrafasttrain:10000"}],"returnContSearchData":True,"realtime":"REALTIME"}
+        data = {"version":34,"language":"en","start":{},"dest":{},"toStartBy":"FOOTPATH","toDestBy":"FOOTPATH","time":{"date":"29.10.2018","time":"13:58"},"timeIsDeparture":True,"schedulesBefore":0,"schedulesAfter":4,"intermediateStops":True,"tariffInfoSelector":[{"tariff":"HVV","tariffRegions":False,"kinds":["1"]},{"tariff":"SH","tariffRegions":False,"kinds":["1"]}],"penalties":[{"name":"desiredType","value":"longdistancebus,fasttrain&extrafasttrain:10000"}],"returnContSearchData":True,"realtime":"REALTIME"}
         data["start"] = start
         data["dest"] = destination
         data["time"] = time_object
