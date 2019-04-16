@@ -61,6 +61,12 @@ HIST_STAMPS="dd/mm/yyyy"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  fzf
+  pip
+  sudo
+  systemd
+  taskwarrior
+  wd
   archlinux
   colored-man-pages
   encode64
