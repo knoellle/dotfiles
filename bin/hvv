@@ -13,6 +13,9 @@ import hashlib
 import argparse
 import re
 
+import colorama
+from colorama import init, Fore, Back, Style
+
 class HVVAuth(AuthBase):
 
     def __init__(self, payloadFunc):
@@ -75,8 +78,8 @@ class HVVClient(object):
     def prettyPrintRoute(self, route):
         def print_table(table):
             col_width = [max(len(x) for x in col) for col in zip(*table)]
-            for line in table:
-                print("| " + " | ".join("{:{}}".format(x, col_width[i]) for i, x in enumerate(line)) + " |")
+            for i, line in enumerate(table):
+                print((Style.BRIGHT if i % 2 else Style.DIM) + "| " + " | ".join("{:{}}".format(x, col_width[i]) for i, x in enumerate(line)) + " |")
         if not route.get("realtimeSchedules", []):
             print("Error, no routes found")
             return
@@ -105,6 +108,10 @@ def parseTime(s):
     return timedelta(minutes=m, hours=h)
 
 def main():
+
+    # enable color output
+    colorama.init(autoreset=True)
+
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="action", required=True)
     widgetparser = subparsers.add_parser("widget,", aliases=["w"])
@@ -146,7 +153,7 @@ def main():
                 destName = startName
                 startName = subprocess.Popen("python "+os.path.join(configdir, "locate.py"), shell=True, stdout=subprocess.PIPE, universal_newlines=True).stdout.read().strip("\n ")
                 if startName:
-                    print("Auto-locator determined location as "+startName)
+                    print(f"Auto-locator determined location as {Fore.CYAN}{startName}")
         if not destName:
             print("No start location given and auto-locator failed.")
             return
@@ -155,13 +162,14 @@ def main():
         start = hvv.findStation(aliases.get(startName.lower(), startName))
         dest  = hvv.findStation(aliases.get(destName.lower(), destName))
         if not start:
-            print(f"Couldn't find station '{startName}', aborting...")
+            print(f"Couldn't find station '{Fore.RED}{startName}{Fore.RESET}', aborting...")
             return
         if not dest:
-            print(f"Couldn't find station '{destName}', aborting...")
+            print(f"Couldn't find station '{Fore.RED}{destName}{Fore.RESET}', aborting...")
             return
-        print("From: {}\nTo: {}".format(start["name"], dest["name"]))
-        print(("Departure" if timeIsDeparture else "Arrival") + ": {:%H:%M}".format(time))
+        print("From: {}{}".format(Fore.CYAN, start["name"]))
+        print("To  : {}{}".format(Fore.CYAN,  dest["name"]))
+        print(("Departure" if timeIsDeparture else "Arrival") + ": {}{:%H:%M}".format(Fore.GREEN, time))
         route = hvv.getRoute(start, dest, time, timeIsDeparture)
         hvv.prettyPrintRoute(route)
         if args["v"]:
