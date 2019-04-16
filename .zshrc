@@ -138,7 +138,7 @@ alias rs="resource"
 alias fv='v $(fzf)'
 alias xev='xev | grep "keycode"'
 alias wtf='journalctl -r'
-#alias alert="tee -p '$(tty)' | sed '/^[[:blank:]]*$/d' | tail -$1 | xargs -I {} notify-send 'Command finished' '{}' -t 5000"
+alias samedir='$TERMINAL $(pwd) >/dev/null 2>&1 &!'
 
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow --ignore-file ~/.ignore"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
