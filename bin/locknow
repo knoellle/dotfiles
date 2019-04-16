@@ -12,6 +12,9 @@ Z='#FFFFFFFF'  # test
 
 sleep 0.1
 RES=$(xrandr | grep -Eo '[0-9]+x[0-9]+' | head -n1)
+if [ -f $HOME/Pictures/lockscreens/glitch-moon-$RES.png ]; then
+    IMAGE="-i $HOME/Pictures/lockscreens/glitch-moon-$RES.png"
+fi
 
 i3lock \
 -c 000000             \
@@ -26,20 +29,23 @@ i3lock \
 --linecolor=$B        \
 --separatorcolor=$D   \
 \
---verifcolor=$T        \
---wrongcolor=$T        \
+--verifcolor=$T       \
+--wrongcolor=$T       \
 --timecolor=$W        \
 --datecolor=$W        \
 --keyhlcolor=$W       \
 --bshlcolor=$W        \
+--layoutcolor=$W      \
 \
 --screen 1            \
 --radius=250          \
---ring-width=15	      \
+--ring-width=15       \
 --indpos='w/2+10:h/2' \
 --clock         \
 --indicator           \
 --timestr="%H:%M %Z"  \
 --datestr="%A, %m %Y" \
---refresh-rate=60      \
--i ~/Pictures/lockscreens/glitch-moon-$RES.png
+--keylayout 2         \
+--refresh-rate=60     \
+$IMAGE \
+|| i3lock -c 000000
