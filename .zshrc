@@ -60,18 +60,18 @@ HIST_STAMPS="dd/mm/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  archlinux
+  colored-man-pages
+  encode64
   fzf
+  git
+  magic-enter
   pip
   sudo
   systemd
   taskwarrior
   wd
-  archlinux
-  colored-man-pages
-  encode64
   you-should-use
-  magic-enter
 )
 
 source $ZSH/oh-my-zsh.sh
