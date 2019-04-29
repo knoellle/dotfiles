@@ -140,6 +140,10 @@ alias fv='v $(fzf)'
 alias xev='xev | grep "keycode"'
 alias wtf='journalctl -r'
 alias samedir='$TERMINAL $(pwd) >/dev/null 2>&1 &!'
+alias suspend='systemctl suspend'
+alias zconf="nvim ~/.zshrc"
+alias aconf="nvim ~/.config/awesome/rc.lua"
+alias atconf="nvim ~/.config/awesome/themes/hulks-dark/theme.lua"
 
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow --ignore-file ~/.ignore"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
