@@ -62,6 +62,7 @@ HIST_STAMPS="dd/mm/yyyy"
 plugins=(
   archlinux
   colored-man-pages
+  command-time
   encode64
   fzf
   git
@@ -164,6 +165,28 @@ fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh-agent-thing)" > /dev/null
 fi
+
+# Timing stuff
+zsh_command_time() {
+    export RPROMPT=""
+    if [ -n "$ZSH_COMMAND_TIME" ]; then
+        hours=$(($ZSH_COMMAND_TIME/3600))
+        min=$((($ZSH_COMMAND_TIME/60)%60))
+        sec=$(($ZSH_COMMAND_TIME%60))
+        timer_show=""
+        if [ $hours -gt 0 ]; then
+            timer_show="$timer_show $hours""h"
+        fi
+        if [ $min -gt 0 ]; then
+            timer_show="$timer_show $min""m"
+        fi
+        if [ $sec -gt 0 ]; then
+            timer_show="$timer_show $sec""s"
+        fi
+        #printf "${ZSH_COMMAND_TIME_MSG}\n" "$timer_show"
+        export RPROMPT=$timer_show
+    fi
+}
 
 export PATH="$HOME/bin:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$PATH"
 
