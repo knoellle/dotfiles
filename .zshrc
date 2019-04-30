@@ -148,6 +148,12 @@ alias atconf="nvim ~/.config/awesome/themes/hulks-dark/theme.lua"
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow --ignore-file ~/.ignore"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+samedir-widget() {
+  samedir
+}
+zle -N samedir-widget
+bindkey '^n' samedir-widget
+
 function mcdir
 {
     command mkdir $1 && cd $1
@@ -204,4 +210,7 @@ PERL5LIB="/home/mystery/.perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5
 PERL_LOCAL_LIB_ROOT="/home/mystery/.perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/mystery/.perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/mystery/.perl5"; export PERL_MM_OPT;
+
+# Show taskwarrior on startup
+task next
 
