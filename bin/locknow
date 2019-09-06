@@ -1,4 +1,7 @@
 #!/bin/sh
+
+setxkbmap us
+
 #i3lock -c 000000 -p win -i $(ls ~/Pictures/lockscreens/*.png | shuf -n1) "$@"
 #i3lock -c 000000 -p win -i ~/Pictures/wallpapers/glitch-moon.png "$@"
 
