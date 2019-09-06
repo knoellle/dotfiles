@@ -20,6 +20,9 @@ ln -s ~/.dotfiles/.config/newsboat/urls ~/.config/newsboat/urls
 mkdir -p ~/.config/termite
 ln -s ~/.dotfiles/.config/termite/config ~/.config/termite/config
 
+mkdir -p ~/.config/nvim
+ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+
 # ~/bin
 mkdir -p ~/bin
 for file in ~/.dotfiles/bin/*; do
