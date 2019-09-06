@@ -73,6 +73,9 @@ plugins=(
   taskwarrior
   wd
   you-should-use
+  zsh-autosuggestions
+  zsh-hulks
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -84,12 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='nvim'
-fi
+export EDITOR="nvim"
 
 if [ -d "$HOME/adb-fastboot" ] ; then
     export PATH="$HOME/adb-fastboot:$PATH"
@@ -100,6 +98,11 @@ export TERM="xterm"
 
 # Enable touch scrolling in firefox
 export MOZ_USE_XINPUT2=1
+
+# ZSH autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
+bindkey '^j' autosuggest-execute
+bindkey '^h' autosuggest-accept
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -118,6 +121,7 @@ export MOZ_USE_XINPUT2=1
 
 alias simrobert="optirun /home/mystery/hulks/nao/tools/SimRobot/build/SimRobot || simrobert-intel"
 alias simrobert-intel="/home/mystery/hulks/nao/tools/SimRobot/build/SimRobot"
+alias resim="(cd ~/hulks/nao && ./scripts/compile && (simrobert))"
 alias mate="/home/mystery/venv/hulks/bin/python /home/mystery/hulks/nao/tools/mate/run.py&!"
 alias fucking="sudo"
 alias please="sudo"
@@ -128,6 +132,7 @@ alias take="xclip -selection c -o"
 alias v="/usr/bin/nvim"
 alias p="python"
 alias p2="python2"
+alias j="julia"
 alias r="ranger"
 alias sranger="source ranger"
 alias sr="sranger"
@@ -144,8 +149,18 @@ alias suspend='systemctl suspend'
 alias zconf="nvim ~/.zshrc"
 alias aconf="nvim ~/.config/awesome/rc.lua"
 alias atconf="nvim ~/.config/awesome/themes/hulks-dark/theme.lua"
+alias vconf="nvim ~/.config/nvim/init.vim"
+# taskwarrior
+alias ts="task sync"
+alias ta="task add"
+# ssh
+alias rechenknecht="ssh knoellle@10.2.24.6"
+alias pi="ssh pi@raspberrypi"
+alias vps="ssh mystery@193.30.120.235 -p 51337"
 
-export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow --ignore-file ~/.ignore"
+alias glr="git pull --rebase"
+
+export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow --ignore-file ~/.ignore 2> /dev/null"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 samedir-widget() {
@@ -214,3 +229,4 @@ PERL_MM_OPT="INSTALL_BASE=/home/mystery/.perl5"; export PERL_MM_OPT;
 # Show taskwarrior on startup
 task next
 
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
