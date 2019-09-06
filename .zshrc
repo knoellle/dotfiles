@@ -179,6 +179,12 @@ function vw
     command nvim $(which $1)
 }
 
+gms () {
+        trackingBranch=$1
+        git merge --squash $trackingBranch
+        git commit -m "squashed $trackingBranch"
+}
+
 function alert
 {
     tee -p >&2 | sed '/^[[:blank:]]*$/d' | tail -"${1:-1}" | sed 's/\x1b\[[0-9;]*m//g' | xargs -I {} notify-send "${3:-Command finished}" " {}" -u ${2:-normal} -t ${4:-5000}
