@@ -28,6 +28,9 @@ ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
 mkdir -p ~/.config/dunst
 ln -s ~/.dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 
+mkdir -p ~/.config/sxhkd
+ln -s ~/.dotfiles/.config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
+
 # ~/bin
 mkdir -p ~/bin
 for file in ~/.dotfiles/bin/*; do
