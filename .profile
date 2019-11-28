@@ -4,7 +4,7 @@
 # Adds `~/.scripts` and all subdirectories to $PATH
 export PATH="$PATH:$HOME/bin:$(du -L "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 export EDITOR="nvim"
-export TERMINAL="termite"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 export READER="zathura"
 export FILE="ranger"
@@ -30,3 +30,5 @@ echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc
 
 # Switch escape and caps if tty:
 sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null
+
+export PATH="$HOME/.cargo/bin:$PATH"

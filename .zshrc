@@ -122,7 +122,7 @@ bindkey '^h' autosuggest-accept
 alias simrobert="optirun /home/mystery/hulks/nao/tools/SimRobot/build/SimRobot || simrobert-intel"
 alias simrobert-intel="/home/mystery/hulks/nao/tools/SimRobot/build/SimRobot"
 alias resim="(cd ~/hulks/nao && ./scripts/compile && (simrobert))"
-alias mate="/home/mystery/venv/hulks/bin/python /home/mystery/hulks/nao/tools/mate/run.py&!"
+alias mate="(cd /home/mystery/hulks/nao && /home/mystery/venv/hulks/bin/python /home/mystery/hulks/nao/tools/mate/run.py&!)"
 alias fucking="sudo"
 alias please="sudo"
 alias imperative="sudo"
@@ -159,6 +159,12 @@ alias pi="ssh pi@raspberrypi"
 alias vps="ssh mystery@193.30.120.235 -p 51337"
 
 alias glr="git pull --rebase"
+
+if ifinstalled exa ; then
+  alias ls="exa --git -l"
+  alias la="exa --git -la"
+  alias ll="exa --git -l"
+fi
 
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow --ignore-file ~/.ignore 2> /dev/null"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

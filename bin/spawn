@@ -1,8 +1,15 @@
+xrandr --auto
 xrandr --output HDMI-1 --above eDP-1
+xrandr --output VGA1 --above LVDS1
+xrandr --output VGA2 --above LVDS1
+xrandr --output DP1 --above LVDS1
+xrandr --output DP2 --above LVDS1
 xset r rate 200 25
 setxkbmap -option
-setxkbmap -option caps:escape
+setxkbmap -option ctrl:nocaps
+setxkbmap -option caps:control
 setxkbmap -option shift:both_capslock
 setxkbmap -option eurosign:e
 xmodmap -e "clear Lock"
 set r 66
+xsetwacom --set 'Wacom ISDv4 E6 Finger touch' Gesture off

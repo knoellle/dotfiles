@@ -27,9 +27,16 @@ function getallips
     done
 }
 
+function ytviews
+{
+    echo $2 $(youtube-dl -j $1 | jq .view_count)
+}
+
 # Create/clear file
 > $CACHE
 
 getallips >> $CACHE
+cat /tmp/gamestate.txt | grep -v raw >> $CACHE
+#ytviews https://www.youtube.com/watch\?v\=4Y1lZQsyuSQ "Rezo CDU" >> $CACHE
 
 cat $CACHE

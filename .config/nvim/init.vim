@@ -34,7 +34,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'chriskempson/base16-vim'
 
 " Auto completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Commenting
 Plug 'tpope/vim-commentary'
@@ -201,7 +201,7 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 100
 inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-inoremap <expr><cr>    pumvisible() ? "\<c-y>" : "\<cr>"
+" inoremap <expr><cr>    pumvisible() ? "\<c-y>" : "\<cr>"
 
 " Center result after search repeat
 nnoremap n nzz
@@ -215,11 +215,17 @@ map <silent> k gk
 vmap < <gv
 vmap > >gv
 
+" This is actually Ctrl + /, but terminals suck
+noremap <C-_> :Commentary<Enter>
+
 " Switching windows
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
+
+" run make
+noremap <C-m> :!make<Enter>
 
 " toggle source header function
 function ToggleSourceHeader()

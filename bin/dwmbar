@@ -1,0 +1,247 @@
+#!/usr/bin/env sh
+
+# This script sets the statusbar with the xsetroot command at the end. Have it
+# started by ~/.xinitrc or ~/.xprofile.
+
+# Handle SIGTRAP signals sent by refbar to update the status bar immediately.
+trap 'update' 5
+
+white="^c#FFFFFF^"
+orange="^c#FF6100^"
+blue="^c#66D9EF^"
+red="^c#FF0000^"
+green="^c#A6E22E^"
+
+# Set the deliminter character.
+delim="$orange | $white"
+
+# testweather checks to see if the most recent forecast is up to date.  If it
+# isn't, it downloads a new weather forecast, then signals to update the
+# statusbar. Gets weather report from wttr.in.
+weatherpath="/tmp/weatherreport"
+testweather() { \
+	[ "$(stat -c %y "$weatherpath" 2>/dev/null | cut -d' ' -f1)" != "$(date '+%Y-%m-%d')" ] &&
+		ping -q -c 1 1.1.1.1 >/dev/null &&
+		curl -s "wttr.in/$location" > "$weatherpath" &&
+		notify-send "🌞 Weather" "New weather forecast for today." &&
+		refbar
+		}
+
+counter=0
+
+marquee() { \
+
+	text=$1
+	width=$2
+	if ((${#text} <= width)) ; then
+		echo "$text"
+		return
+	fi
+	text="$text --- "
+	l=${#text}
+	counter=$(((counter / 1) % l))
+	echo "$text" | cut -c $((counter + 1))-$((counter + width))
+	if ((counter % l + width - l>0)); then
+		echo "$text" | cut -b 1-$((counter + width - l))
+	fi
+	echo $delim
+
+}
+
+weighted_average () {
+
+	previous=$1
+	value=$2
+	factor=$3
+	echo "$previous * (1.0 - $factor) + $value * $factor" | bc
+
+}
+
+sum() {
+	echo $@ | tr " " "+" | bc
+}
+
+mpd() {
+
+	mpdstatus=`mpc -f "[[%artist% - ]%title%]|[%file%]" 2>/dev/null | grep -v "volume:" | head -n 1`
+	echo "^c#ff6100^"
+	marquee "$mpdstatus" 85
+}
+
+wifi_state=0
+update_wifi() {
+
+	value=`grep "^\\s*w" /proc/net/wireless | awk '{ print int($3 * 100 / 70) }'`
+	wifi_state=$(weighted_average $wifi_state $value 0.1)
+
+}
+
+get_cputimes() {
+
+	declare -a result
+	stat=$(cat /proc/stat | grep "cpu")
+	n=0
+	while read line; do
+		result+=($(echo "$line" | awk -v RS="" '{printf "%d %d\n", ($2+$3+$4+$5+$6+$7+$8+$9+$10+$11), ($5+$6)}'))
+	done <<< "$stat"
+	echo ${result[@]}
+}
+
+# The first entry contains the combination of all cores, followed by the values for each core
+last_cycle=($(get_cputimes))
+cpu_perc=()
+history=()
+historyidx=0
+cpu_string=""
+
+update_cpu() {
+
+	this_cycle=($(get_cputimes))
+	diff=()
+	for ((i=0;i<((${#this_cycle[*]}));i+=1))
+	do
+		diff+=($((this_cycle[$i] - last_cycle[$i])))
+	done
+	cpu_perc=()
+	for ((i=0;i<((${#this_cycle[*]}));i+=2))
+	do
+		cpu_perc+=($(echo "scale=2; a=(100 - ${diff[$i+1]} / ${diff[$i]} * 100); scale=0; a/1" | bc -l))
+	done
+	last_cycle=(${this_cycle[@]})
+
+	let historyidx+=1
+	if (( $historyidx >= 15 )) ; then
+		historyidx=0
+	fi
+	history[$historyidx]=${cpu_perc[0]}
+
+	# temperature
+	cpu_string="$(
+		sensors | awk '/Core 0/ {print $3}' | cut -d+ -f2
+		echo " ${cpu_perc[0]}%"
+		echo "^f4^"
+
+		# per core usage
+		for ((i=1;i<((${#cpu_perc[*]}));i+=1))
+		do
+			if ((${cpu_perc[i]} > 75)) ; then
+				echo $red
+			else
+				echo $green
+			fi
+			echo "^r2,15,2,-$(echo "${cpu_perc[i]} / 8" | bc)^^f4^"
+		done
+
+		# history graph
+		echo "^f4^"
+		clr=""
+		for ((i=1;i<((${#history[*]}));i+=1))
+		do
+			let idx="($historyidx + $i) % ${#history[*]}"
+			newclr=$green
+			(( ${history[$idx]} > 80 )) && newclr=$red
+			if [[ clr != newclr ]] ; then
+				clr=$newclr
+				echo $clr
+			fi
+			echo "^r1,15,2,-$((${history[$idx]=0} / 8))^^f2^"
+		done
+	)"
+}
+
+# Here is the (big) function that outputs the appearance of the statusbar. It
+# can really be broken down into many submodules which I've commented and
+# explained.
+status() { \
+
+	echo "$white"
+	# If the weather report is current, show daily precipitation chance,
+	# low and high.  Don't even bother to understand this one unless you
+	# have all day. Takes the weather report format from wttr.in and makes
+	# it look like how I want it for the status bar.
+	[ "$(stat -c %y "$weatherpath" 2>/dev/null | cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ] &&
+		sed '16q;d' "$weatherpath" | grep -wo "[0-9]*%" | sort -n | sed -e '$!d' | sed -e "s/^/ /g" | tr -d '\n' &&
+		sed '13q;d' "$weatherpath" | grep -o "m\\(-\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print " ",$1 "°","",$2 "°"}' &&
+		echo "$delim"
+
+	# Get the volume of ALSA's master volume output.  Show an icon if or
+	# not muted.
+	amixer get Master | grep -o "[0-9]*%\|\[on\]\|\[off\]" | tr '\n' ' ' | sed -e 's/\[off\]//' -e 's/\[on\]//' | awk '{print $2 " " $1}' | xargs
+
+	echo "$delim"
+
+	# Wifi quality percentage and  icon if ethernet is connected.
+	echo "$blue$white $wifi_state"
+	sed "s/down//;s/up/ /" /sys/class/net/e*/operstate
+
+	# Show unread mail if mutt-wizard is installed.
+	command -v mw >/dev/null 2>&1 &&
+		echo "$delim" &&
+		du -a ~/.local/share/mail/*/INBOX/new/* 2>/dev/null | wc -l | sed 's/^/ /'
+		echo "$delim"
+
+	echo "$cpu_string"
+	echo "$delim"
+
+	# Will show all batteries with approximate icon for remaining power.
+	for x in /sys/class/power_supply/BAT?;
+	do
+		case "$(cat $x/capacity)" in
+			100|9[0-9])	echo "^c#A6E22E^" ;;
+			8[0-9]|7[0-9])	echo "^c#A6E22E^" ;;
+			6[0-9]|5[0-9])	echo "^c#A6E22E^" ;;
+			4[0-9]|3[0-9])	echo "^c#ff6100^" ;;
+			*)		echo "^c#F92672^" ;;
+		esac
+		echo " "
+		cat $x/capacity
+		echo "%"
+	done && echo "$delim"
+
+	# Date and time.
+	# date '+%Y %b %d (%a) %I:%M%p'
+	date +'%a %m-%d %T'
+
+			 # ^
+			 # \- top bar
+	echo ";" #
+			 # /- bottom bar
+			 # v
+
+	# Get current mpd track filename or artist - title if possible.
+	mpd
+	}
+
+update() { \
+	# So all that big status function was just a command that quicking gets
+	# what we want to be the statusbar. This xsetroot command is what sets
+	# it. Note that the tr command replaces newlines with spaces. This is
+	# to prevent some weird issues that cause significant slowing of
+	# everything in dwm. Note entirely sure of the cause, but again, the tr
+	# command easily avoids it.
+	title="$(status | paste -sd "")"
+	# echo ${#title}
+	xsetroot -name "$title"
+	# sleep 5
+
+	# Check to see if new weather report is needed.
+	testweather &
+	counter=$(($counter + 1))
+    wait
+    }
+
+
+while :; do
+	if ((counter % 1 == 0)); then
+		update_wifi
+		update_cpu
+	fi
+    update
+	# Sleep for a minute after changing the status bar before updating it
+	# again. We run sleep in the background and use wait until it finishes,
+    # because traps can interrupt wait immediately, but they can't do that
+    # with sleep.
+	# sleep 1m &
+	sleep 1
+    wait
+done

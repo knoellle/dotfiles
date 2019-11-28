@@ -6,9 +6,11 @@ SCRIPTPATH=`dirname $SCRIPT`
 # set up fixed location for the dotfile repo
 ln -s $SCRIPTPATH -T ~/.dotfiles
 
+# homedir dotfiles
 ln -s ~/.dotfiles/.profile -T ~/.profile
 ln -s ~/.profile -T ~/.zprofile
 ln -s ~/.dotfiles/.zshrc -T ~/.zshrc
+ln -s ~/.dotfiles/.xinitrc -T ~/.xinitrc
 
 # .config
 ln -s ~/.dotfiles/.config/compton.conf ~/.config/compton.conf

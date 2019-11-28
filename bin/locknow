@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-setxkbmap us
+setxkbmap us cz_sk_de
 
 #i3lock -c 000000 -p win -i $(ls ~/Pictures/lockscreens/*.png | shuf -n1) "$@"
 #i3lock -c 000000 -p win -i ~/Pictures/wallpapers/glitch-moon.png "$@"
@@ -15,10 +15,13 @@ Z='#FFFFFFFF'  # test
 
 sleep 0.1
 RES=$(xrandr | grep -Eo '[0-9]+x[0-9]+' | head -n1)
-if [ -f $HOME/Pictures/lockscreens/glitch-moon-$RES.png ]; then
-    IMAGE="-i $HOME/Pictures/lockscreens/glitch-moon-$RES.png"
-fi
-
+RES="1920x1080"
+IMAGES="$HOME/Pictures/lockscreens/*-$RES.png"
+IMAGE=$(ls $IMAGES | sort -R | tail -n1)
+IMAGE="-i $IMAGE"
+#if [ -f $HOME/Pictures/lockscreens/glitch-moon-$RES.png ]; then
+#    IMAGE="-i $HOME/Pictures/lockscreens/glitch-moon-$RES.png"
+#fi
 i3lock \
 -c 000000             \
 --insidevercolor=$B   \
@@ -51,4 +54,5 @@ i3lock \
 --keylayout 2         \
 --refresh-rate=60     \
 $IMAGE \
-|| i3lock -c 000000
+|| i3lock-multimonitor $IMAGE -a "-p win" # -c 000000
+

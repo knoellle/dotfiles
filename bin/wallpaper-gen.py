@@ -57,10 +57,10 @@ def imagebox(image, src, pos, boxcolor="black", framecolor="white", margin=10, m
     image.paste(src, (rect[0], rect[1]))
 
 def modify(image, sourcepath):
-    wotd = wordoftheday()
-    textbox(image, wotd[0], wotd[1], position=(0.5, 0.75), textpadding=50)
-    imagebox(image, randomimage(sourcepath+"inspirobot/"), (0.19, 0.80), maxwidth=325, maxheight=325)
-    imagebox(image, randomimage(sourcepath+"inspirobot/"), (0.81, 0.80), maxwidth=325, maxheight=325)
+    #wotd = wordoftheday()
+    #textbox(image, wotd[0], wotd[1], position=(0.5, 0.75), textpadding=50)
+    #imagebox(image, randomimage(sourcepath+"inspirobot/"), (0.19, 0.80), maxwidth=325, maxheight=325)
+    #imagebox(image, randomimage(sourcepath+"inspirobot/"), (0.81, 0.80), maxwidth=325, maxheight=325)
     return image
 
 def main():
