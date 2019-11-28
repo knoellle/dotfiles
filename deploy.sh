@@ -25,6 +25,9 @@ ln -s ~/.dotfiles/.config/termite/config ~/.config/termite/config
 mkdir -p ~/.config/nvim
 ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
 
+mkdir -p ~/.config/dunst
+ln -s ~/.dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
+
 # ~/bin
 mkdir -p ~/bin
 for file in ~/.dotfiles/bin/*; do
