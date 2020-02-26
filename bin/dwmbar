@@ -21,10 +21,10 @@ delim="$orange | $white"
 weatherpath="/tmp/weatherreport"
 testweather() { \
 	[ "$(stat -c %y "$weatherpath" 2>/dev/null | cut -d' ' -f1)" != "$(date '+%Y-%m-%d')" ] &&
-		ping -q -c 1 1.1.1.1 >/dev/null &&
+		fping -t1000  -q -c 1 1.1.1.1 >/dev/null &&
 		curl -s "wttr.in/$location" > "$weatherpath" &&
-		notify-send "🌞 Weather" "New weather forecast for today." &&
-		refbar
+		notify-send "🌞 Weather" "New weather forecast for today."
+		# refbar
 		}
 
 counter=0
@@ -71,8 +71,8 @@ mpd() {
 wifi_state=0
 update_wifi() {
 
-	value=`grep "^\\s*w" /proc/net/wireless | awk '{ print int($3 * 100 / 70) }'`
-	wifi_state=$(weighted_average $wifi_state $value 0.1)
+	wifi_state=`grep "^\\s*w" /proc/net/wireless | awk '{ print int($3 * 100 / 70) }'`
+	# wifi_state=$(weighted_average $wifi_state $value 0.1)
 
 }
 
@@ -110,15 +110,19 @@ update_cpu() {
 	last_cycle=(${this_cycle[@]})
 
 	let historyidx+=1
-	if (( $historyidx >= 15 )) ; then
+	if (( $historyidx >= 60 )) ; then
 		historyidx=0
 	fi
 	history[$historyidx]=${cpu_perc[0]}
 
 	# temperature
 	cpu_string="$(
-		sensors | awk '/Core 0/ {print $3}' | cut -d+ -f2
-		echo " ${cpu_perc[0]}%"
+		sensors | awk '/Core 0/ {print $3}' | cut -d+ -f2 | sed 's/.0//'
+		if ((${cpu_perc[0]} < 10)); then
+			echo "  ${cpu_perc[0]}%"
+		else
+			echo " ${cpu_perc[0]}%"
+		fi
 		echo "^f4^"
 
 		# per core usage
@@ -144,7 +148,7 @@ update_cpu() {
 				clr=$newclr
 				echo $clr
 			fi
-			echo "^r1,15,2,-$((${history[$idx]=0} / 8))^^f2^"
+			echo "^r1,15,1,-$((${history[$idx]=0} / 8))^^f1^"
 		done
 	)"
 }
@@ -180,6 +184,10 @@ status() { \
 		du -a ~/.local/share/mail/*/INBOX/new/* 2>/dev/null | wc -l | sed 's/^/ /'
 		echo "$delim"
 
+    memory
+	echo " "
+	echo "$delim"
+
 	echo "$cpu_string"
 	echo "$delim"
 
@@ -194,8 +202,29 @@ status() { \
 			*)		echo "^c#F92672^" ;;
 		esac
 		echo " "
+		current=$(cat $x/energy_now)
+		full=$(cat $x/energy_full)
+		div=$(cat $x/power_now)
+		dir="-"
+			if grep "Charging" "$x/status" > /dev/null ; then
+				dir="+"
+				let current=$full-$current
+			fi
+			echo $dir
 		cat $x/capacity
-		echo "%"
+		echo " "
+		# if the battery is charging or emptying, show remaining time
+		if [ ! $div -eq 0 ]; then
+			let hours=$current/$div
+			let minutes=($current*60)/$div-$hours*60
+			if [ $minutes -lt 10 ]; then
+				echo "$hours:0$minutes"
+			else
+				echo "$hours:$minutes"
+			fi
+		else
+			echo "00:00"
+		fi
 	done && echo "$delim"
 
 	# Date and time.
@@ -225,9 +254,11 @@ update() { \
 	# sleep 5
 
 	# Check to see if new weather report is needed.
-	testweather &
+	if ((counter % 300 == 0)) ; then
+		testweather &
+		wait
+	fi
 	counter=$(($counter + 1))
-    wait
     }
 
 

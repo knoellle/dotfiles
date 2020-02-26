@@ -8,7 +8,8 @@ export ZSH=/home/mystery/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="agnoster"
-ZSH_THEME="rkj-repos"
+ZSH_THEME="rkj-repos-modified"
+# ZSH_THEME="jnrowe"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -63,6 +64,8 @@ plugins=(
   archlinux
   colored-man-pages
   command-time
+  docker
+  docker-compose
   encode64
   fzf
   git
@@ -144,7 +147,7 @@ alias rs="resource"
 alias fv='v $(fzf)'
 alias xev='xev | grep "keycode"'
 alias wtf='journalctl -r'
-alias samedir='$TERMINAL $(pwd) >/dev/null 2>&1 &!'
+alias samedir='(cd $(pwd); $TERMINAL)  >/dev/null 2>&1 &!'
 alias suspend='systemctl suspend'
 alias zconf="nvim ~/.zshrc"
 alias aconf="nvim ~/.config/awesome/rc.lua"
@@ -154,9 +157,10 @@ alias vconf="nvim ~/.config/nvim/init.vim"
 alias ts="task sync"
 alias ta="task add"
 # ssh
-alias rechenknecht="ssh knoellle@10.2.24.6"
+alias rechenknecht="ssh -X knoellle@10.2.24.6"
 alias pi="ssh pi@raspberrypi"
 alias vps="ssh mystery@193.30.120.235 -p 51337"
+alias nas="ssh core@192.168.178.205"
 
 alias glr="git pull --rebase"
 
@@ -185,6 +189,11 @@ function vw
     command nvim $(which $1)
 }
 
+function pac
+{
+    source ~/venv/$1/bin/activate
+}
+
 gms () {
         trackingBranch=$1
         git merge --squash $trackingBranch
@@ -205,7 +214,6 @@ fi
 
 # Timing stuff
 zsh_command_time() {
-    export RPROMPT=""
     if [ -n "$ZSH_COMMAND_TIME" ]; then
         hours=$(($ZSH_COMMAND_TIME/3600))
         min=$((($ZSH_COMMAND_TIME/60)%60))
@@ -220,8 +228,7 @@ zsh_command_time() {
         if [ $sec -gt 0 ]; then
             timer_show="$timer_show $sec""s"
         fi
-        #printf "${ZSH_COMMAND_TIME_MSG}\n" "$timer_show"
-        export RPROMPT=$timer_show
+        export ZSH_COMMAND_TIME=$timer_show
     fi
 }
 
@@ -239,6 +246,6 @@ PERL_MB_OPT="--install_base \"/home/mystery/.perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/mystery/.perl5"; export PERL_MM_OPT;
 
 # Show taskwarrior on startup
-task next
+# task next
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
