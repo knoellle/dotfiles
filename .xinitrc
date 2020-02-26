@@ -5,6 +5,7 @@ mpd
 compton-restart
 spawn
 setxkbmap us cz_sk_de
+nm-applet &
 
 # fix polkit stuff
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh &
@@ -24,6 +25,8 @@ echo "Starting $wm"
 if [ "$wm" == "i3" ] ; then
 	exec i3 >> ~/.cache/i3log
 elif [ "$wm" == "dwm" ] ; then
+	dwmbar &
+	sxhkd &
 	# relaunch DWM if the binary changes, otherwise bail
 	csum=$(sha1sum $(which dwm))
 	new_csum=""
