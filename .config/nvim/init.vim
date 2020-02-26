@@ -6,6 +6,12 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Enable persistent undo
+set undofile
+set undodir=~/.cache/vim/undo
+set undolevels=1000
+set undoreload=10000
+
 " Enable hidden buffers
 set hidden
 
@@ -26,7 +32,7 @@ set updatetime=300
 
 " System Interaction
 set mouse=a
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -42,6 +48,8 @@ Plug 'tpope/vim-commentary'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -71,6 +79,20 @@ Plug 'ciaranm/detectindent'
 
 " Gay parentheses
 Plug 'luochen1990/rainbow'
+
+" Vim in firefox
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+let g:firenvim_config = {
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'selector': '',
+            \ 'priority': 0,
+        \ }
+    \ }
+\ }
+
+" latex support
+Plug 'lervag/vimtex'
 
 " Start a * or # search from a visual block
 Plug 'nelstrom/vim-visual-star-search'
@@ -260,16 +282,40 @@ noremap <leader>k :bn<CR>
 noremap <leader>c :bd<CR>
 
 " Tabs
-nnoremap <leader>l gt
-nnoremap <leader>h gT
-nnoremap <silent><leader>t :tabnew<CR>
-nnoremap <leader>x :tabclose<CR>
+" nnoremap <leader>l gt
+" nnoremap <leader>h gT
+" nnoremap <silent><leader>t :tabnew<CR>
+" nnoremap <leader>x :tabclose<CR>
+
+" nnoremap <leader>p "+p
+" nnoremap <leader>P "+P
+" nnoremap <leader>y "+y
+" nnoremap <leader>Y "+Y
+
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in version
+" control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'r'
+
+" Use a leader instead of the actual named binding
+nmap <leader>p :CtrlP<cr>
+
+" Easy bindings for its various modes
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
 
 " Automatically deletes all trailing whitespace on save.
 autocmd BufWritePre * %s/\s\+$//e
 
 " Automatically detect indent styles
-autocmd BufReadPost * :DetectIndent
+" autocmd BufReadPost * :DetectIndent
 
 " highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -291,6 +337,36 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " autocmd Filetype markdown,rmd inoremap <leader>1 #<Space><Enter><++><Esc>kA
 " autocmd Filetype markdown,rmd inoremap <leader>2 ##<Space><Enter><++><Esc>kA
 " autocmd Filetype markdown,rmd inoremap <leader>3 ###<Space><Enter><++><Esc>kA
-" autocmd Filetype markdown,rmd inoremap <leader>t <Esc>:.!cat /tmp/gamestate.txt <bar> grep time <bar> cut -d " " -f 2<Enter>A<Space>
-" autocmd Filetype markdown,rmd nnoremap <leader>t :.!cat /tmp/gamestate.txt <bar> grep time <bar> cut -d " " -f 2<Enter>A<Space>
+autocmd Filetype markdown,rmd inoremap ,t <Esc>:.!cat /tmp/gamestate.txt <bar> grep time <bar> cut -d " " -f 2<Enter>A<Space>
+autocmd Filetype markdown,rmd nnoremap ,t :.!cat /tmp/gamestate.txt <bar> grep time <bar> cut -d " " -f 2<Enter>A<Space>
+
+vnoremap <leader>= "ey:call CalcBC()<CR>
+nnoremap <leader>= "Vey:call CalcBC()<CR>
+function! CalcBC()
+  let has_equal = 0
+  " remove newlines and trailing spaces
+  let @e = substitute (@e, "\n", "", "g")
+  let @e = substitute (@e, '\s*$', "", "g")
+  " if we end with an equal, strip, and remember for output
+  if @e =~ "=$"
+    let @e = substitute (@e, '=$', "", "")
+    let has_equal = 1
+  endif
+  " sub common func names for bc equivalent
+  let @e = substitute (@e, '\csin\s*(', "s (", "")
+  let @e = substitute (@e, '\ccos\s*(', "c (", "")
+  let @e = substitute (@e, '\catan\s*(', "a (", "")
+  let @e = substitute (@e, "\cln\s*(", "l (", "")
+  " escape chars for shell
+  let @e = escape (@e, '*()')
+  " run bc, strip newline
+  let answer = substitute (system ("echo " . @e . " \| bc -l"), "\n", "", "")
+  " append answer or echo
+  if has_equal == 1
+    normal `>
+    exec "normal a" . answer
+  else
+    echo "answer = " . answer
+  endif
+endfunction
 
