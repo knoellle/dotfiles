@@ -1,10 +1,12 @@
 xrandr --auto
 xrandr --output HDMI-1 --above eDP-1
+xrandr --output HDMI-2 --above LVDS1
 xrandr --output VGA1 --above LVDS1
 xrandr --output VGA2 --above LVDS1
 xrandr --output DP1 --above LVDS1
 xrandr --output DP2 --above LVDS1
 xset r rate 200 25
+setxkbmap us cz_sk_de
 setxkbmap -option
 setxkbmap -option ctrl:nocaps
 setxkbmap -option caps:control
