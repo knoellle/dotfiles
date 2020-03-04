@@ -32,7 +32,7 @@ mkdir -p ~/.config/sxhkd
 ln -s ~/.dotfiles/.config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
 
 mkdir -p ~/.config/alacritty
-ln -s ~/.dotfile/.config/alacritty/alacritty.yml ~/.config/alacritty
+ln -s ~/.dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty
 
 # ~/bin
 mkdir -p ~/bin
