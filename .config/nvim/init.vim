@@ -68,6 +68,18 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
+" Highlight yanked blocks
+Plug 'machakann/vim-highlightedyank'
+
+" Quick search
+Plug 'justinmk/vim-sneak'
+
+" % extention
+Plug 'andymass/vim-matchup'
+
+" cd to vcs root (helps with fzf)
+Plug 'airblade/vim-rooter'
+
 " Clang-format
 Plug 'rhysd/vim-clang-format'
 
@@ -77,19 +89,8 @@ Plug 'tell-k/vim-autopep8'
 " Detect tab width from buffer
 Plug 'ciaranm/detectindent'
 
-" Gay parentheses
+" More useful parentheses
 Plug 'luochen1990/rainbow'
-
-" Vim in firefox
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-let g:firenvim_config = {
-    \ 'localSettings': {
-        \ '.*': {
-            \ 'selector': '',
-            \ 'priority': 0,
-        \ }
-    \ }
-\ }
 
 " latex support
 Plug 'lervag/vimtex'
@@ -97,10 +98,8 @@ Plug 'lervag/vimtex'
 " Start a * or # search from a visual block
 Plug 'nelstrom/vim-visual-star-search'
 
-"Creates sidebar that displays the ctags-generated tags of the current file, ordered by their scope.
-Plug 'majutsushi/tagbar'
-let g:tagbar_autofocus = 1
-nnoremap <silent> <F4> :TagbarToggle<CR>
+" Table alignment helper
+Plug 'godlygeek/tabular'
 
 " Python semantic highlighting
 Plug 'numirias/semshi', { 'for': 'python', 'do': ':UpdateRemotePlugins' } " Options "
@@ -108,39 +107,13 @@ let g:semshi#mark_selected_nodes = 0
 nnoremap <leader>rW :Semshi rename
 
 " coc.nvim
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-nmap <silent> <c-space> <Plug>(coc-diagnostic-info)
+" Languages
+Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
+Plug 'rust-lang/rust.vim'
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>qf <Plug>(coc-fix-current)
-
-nmap <silent> <leader>f :call CocAction('format')<CR>
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
 Plug 'metakirby5/codi.vim'
 
@@ -218,12 +191,53 @@ if getcwd() =~ "nao"
   call add(g:UltiSnipsSnippetDirectories,'~/hulks/nao/tools/IDEPlugins/NaoSnippets')
 endif
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 100
-inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" nmap <silent> <c-space> <Plug>(coc-diagnostic-info)
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>qf <Plug>(coc-fix-current)
+
+nmap <silent> <leader>f :call CocAction('format')<CR>
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Make completion popup behave
+" inoremap <expr><tab>   pumvisible() ? "\<c-n>" : "\<tab>"
+" inoremap <expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 " inoremap <expr><cr>    pumvisible() ? "\<c-y>" : "\<cr>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Center result after search repeat
 nnoremap n nzz
@@ -248,6 +262,9 @@ noremap <C-h> <C-w>h
 
 " run make
 noremap <C-m> :!make<Enter>
+
+nnoremap <F13> i
+inoremap <F13> <Esc>l
 
 " toggle source header function
 function ToggleSourceHeader()
@@ -287,10 +304,10 @@ noremap <leader>c :bd<CR>
 " nnoremap <silent><leader>t :tabnew<CR>
 " nnoremap <leader>x :tabclose<CR>
 
-" nnoremap <leader>p "+p
-" nnoremap <leader>P "+P
-" nnoremap <leader>y "+y
-" nnoremap <leader>Y "+Y
+noremap <leader>p "+p
+noremap <leader>P "+P
+noremap <leader>y "+y
+noremap <leader>Y "+Y
 
 " Setup some default ignores
 let g:ctrlp_custom_ignore = {
@@ -302,9 +319,6 @@ let g:ctrlp_custom_ignore = {
 " This makes a lot of sense if you are working on a project that is in version
 " control. It also supports works with .svn, .hg, .bzr.
 let g:ctrlp_working_path_mode = 'r'
-
-" Use a leader instead of the actual named binding
-nmap <leader>p :CtrlP<cr>
 
 " Easy bindings for its various modes
 nmap <leader>bb :CtrlPBuffer<cr>
