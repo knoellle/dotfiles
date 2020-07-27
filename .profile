@@ -4,7 +4,7 @@
 # Adds `~/.scripts` and all subdirectories to $PATH
 export PATH="$PATH:$HOME/bin:$(du -L "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 export EDITOR="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="termite"
 export BROWSER="firefox"
 export READER="zathura"
 export FILE="ranger"
