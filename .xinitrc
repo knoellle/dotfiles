@@ -6,6 +6,7 @@ compton-restart
 spawn
 setxkbmap us cz_sk_de
 nm-applet &
+fusuma &
 
 # fix polkit stuff
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh &
@@ -15,7 +16,7 @@ source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh &
 
 # set default wm here
 if [ "$2" == "" ] ; then
-	wm="dwm"
+	wm="awesome"
 else
 	wm="$2"
 fi
@@ -33,11 +34,11 @@ elif [ "$wm" == "dwm" ] ; then
 	while true
 	do
 		if [ "$csum" != "$new_csum" ] ; then
-			csum=$new_csum
 			dwm >> ~/.cache/dwmlog
 		else
 			exit 0
 		fi
+        csum=$new_csum
 		new_csum=$(sha1sum $(which dwm))
 		sleep 0.5
 	done
