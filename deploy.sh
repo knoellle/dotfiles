@@ -8,6 +8,7 @@ ln -s $SCRIPTPATH -T ~/.dotfiles
 
 # homedir dotfiles
 ln -s ~/.dotfiles/.profile -T ~/.profile
+ln -s ~/.dotfiles/.Xmodmap -T ~/.Xmodmap
 ln -s ~/.profile -T ~/.zprofile
 ln -s ~/.dotfiles/.zshrc -T ~/.zshrc
 ln -s ~/.dotfiles/.xinitrc -T ~/.xinitrc
