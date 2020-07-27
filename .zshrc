@@ -107,6 +107,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
 bindkey '^j' autosuggest-execute
 bindkey '^h' autosuggest-accept
 
+# Disable F13 inserting garbage characters
+bindkey -s "\e[25~" ""
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -122,7 +125,7 @@ bindkey '^h' autosuggest-accept
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias simrobert="optirun /home/mystery/hulks/nao/tools/SimRobot/build/SimRobot || simrobert-intel"
+alias simrobert="optirun /home/mystery/hulks/nao/tools/SimRobot/build/SimRobot || read"
 alias simrobert-intel="/home/mystery/hulks/nao/tools/SimRobot/build/SimRobot"
 alias resim="(cd ~/hulks/nao && ./scripts/compile && (simrobert))"
 alias mate="(cd /home/mystery/hulks/nao && /home/mystery/venv/hulks/bin/python /home/mystery/hulks/nao/tools/mate/run.py&!)"
