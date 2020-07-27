@@ -1,5 +1,5 @@
 #!/bin/sh
 # kill currently running compton
-pkill -u "$USER" -x "compton"
+pkill -u "$USER" -x "picom"
 # start compton again
-compton &
+picom &

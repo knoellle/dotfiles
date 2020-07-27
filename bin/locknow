@@ -2,6 +2,10 @@
 
 setxkbmap us cz_sk_de
 
+# disable compositor for privacy reasons
+killall picom
+picom=$?
+
 #i3lock -c 000000 -p win -i $(ls ~/Pictures/lockscreens/*.png | shuf -n1) "$@"
 #i3lock -c 000000 -p win -i ~/Pictures/wallpapers/glitch-moon.png "$@"
 
@@ -55,4 +59,12 @@ i3lock \
 --refresh-rate=60     \
 $IMAGE \
 || i3lock-multimonitor $IMAGE -a "-p win" # -c 000000
+
+# wait for i3lock to close
+tail --pid=$(pidof i3lock) -f /dev/null
+
+# restart picom if it was killed before locking
+if [ "$picom" = "0" ]; then
+    picom &!
+fi
 
