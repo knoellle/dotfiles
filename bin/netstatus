@@ -3,7 +3,7 @@
 # go to the script location for relative file paths
 cd "${0%/*}"
 
-CACHE=~/.cache/netstatus
+CACHE=/tmp/netstatus
 
 #
 #   $1: name/tag

@@ -30,6 +30,9 @@ set ignorecase
 
 set updatetime=300
 
+" Neovide
+set guifont=Source\ Code\ Pro:12
+
 " System Interaction
 set mouse=a
 " set clipboard=unnamedplus
@@ -94,6 +97,7 @@ Plug 'luochen1990/rainbow'
 
 " latex support
 Plug 'lervag/vimtex'
+let g:tex_flavor = 'latex'
 
 " Start a * or # search from a visual block
 Plug 'nelstrom/vim-visual-star-search'
@@ -162,7 +166,7 @@ set list
 
 " Linenumbers
 set number
-set relativenumber
+" set relativenumber
 set numberwidth=5
 set cursorline
 set cursorcolumn
@@ -174,7 +178,7 @@ set wildmode=longest,list,full
 set splitbelow splitright
 
 " FZF
-map <C-f> :tabedit<CR>:FZF<CR>
+map <C-f> :FZF<CR>
 
 " Replace all is aliased to S
 nnoremap S :%s//g<Left><Left>
@@ -320,13 +324,8 @@ let g:ctrlp_custom_ignore = {
 " control. It also supports works with .svn, .hg, .bzr.
 let g:ctrlp_working_path_mode = 'r'
 
-" Easy bindings for its various modes
-nmap <leader>bb :CtrlPBuffer<cr>
-nmap <leader>bm :CtrlPMixed<cr>
-nmap <leader>bs :CtrlPMRU<cr>
-
 " Automatically deletes all trailing whitespace on save.
-autocmd BufWritePre * %s/\s\+$//e
+" autocmd BufWritePre * %s/\s\+$//e
 
 " Automatically detect indent styles
 " autocmd BufReadPost * :DetectIndent

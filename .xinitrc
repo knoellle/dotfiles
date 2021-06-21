@@ -1,7 +1,8 @@
 #!/bin/sh
-xss-lock --ignore-sleep -- locknow &
-#redshift-gtk &
-mpd
+# xss-lock --ignore-sleep -- locknow &
+/usr/lib/geoclue-2.0/demos/agent &
+redshift-gtk &
+# mpd
 compton-restart
 spawn
 setxkbmap us cz_sk_de

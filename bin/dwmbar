@@ -202,9 +202,9 @@ status() { \
 			*)		echo "^c#F92672^" ;;
 		esac
 		echo " "
-		current=$(cat $x/energy_now)
-		full=$(cat $x/energy_full)
-		div=$(cat $x/power_now)
+		current=$(cat $x/energy_now || cat $x/charge_now)
+		full=$(cat $x/energy_full || cat $x/charge_full)
+		div=$(cat $x/power_now || cat $x/current_now)
 		dir="-"
 			if grep "Charging" "$x/status" > /dev/null ; then
 				dir="+"

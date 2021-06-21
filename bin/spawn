@@ -1,11 +1,13 @@
+#!/bin/sh
+xrandr
 xrandr --auto
-xrandr --output HDMI-1 --above eDP-1
-xrandr --output HDMI-2 --above LVDS1
-xrandr --output VGA1 --above LVDS1
-xrandr --output VGA2 --above LVDS1
-xrandr --output DP1 --above LVDS1
-xrandr --output DP2 --above LVDS1
-xset r rate 200 25
+# xrandr --output HDMI1 --mode 2560x1440 --above eDP1
+# xrandr --output HDMI-2 --above LVDS1
+# xrandr --output VGA1 --above LVDS1
+# xrandr --output VGA2 --above LVDS1
+# xrandr --output DP1 --above LVDS1
+# xrandr --output DP2 --above LVDS1
+xset r rate 200 30
 setxkbmap us cz_sk_de
 setxkbmap -option
 setxkbmap -option ctrl:nocaps
@@ -15,3 +17,7 @@ setxkbmap -option eurosign:e
 xmodmap ~/.Xmodmap
 set r 66
 xsetwacom --set 'Wacom ISDv4 E6 Finger touch' Gesture off
+
+# don't blank screen after inactivity
+xset s off
+xset -dpms

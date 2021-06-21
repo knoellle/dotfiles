@@ -29,7 +29,7 @@ ZSH_THEME="rkj-repos-modified"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=2
+export UPDATE_ZSH_DAYS=7
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -102,6 +102,9 @@ export TERM="xterm"
 # Enable touch scrolling in firefox
 export MOZ_USE_XINPUT2=1
 
+# Make qt5 behave
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 # ZSH autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
 bindkey '^j' autosuggest-execute
@@ -109,6 +112,8 @@ bindkey '^h' autosuggest-accept
 
 # Disable F13 inserting garbage characters
 bindkey -s "\e[25~" ""
+
+export GTK_THEME=Adwaita:dark
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -125,7 +130,7 @@ bindkey -s "\e[25~" ""
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias simrobert="optirun /home/mystery/hulks/nao/tools/SimRobot/build/SimRobot || read"
+alias simrobert="prime-run /home/mystery/hulks/nao/tools/SimRobot/build/SimRobot || read"
 alias simrobert-intel="/home/mystery/hulks/nao/tools/SimRobot/build/SimRobot"
 alias resim="(cd ~/hulks/nao && ./scripts/compile && (simrobert))"
 alias mate="(cd /home/mystery/hulks/nao && /home/mystery/venv/hulks/bin/python /home/mystery/hulks/nao/tools/mate/run.py&!)"
@@ -166,6 +171,12 @@ alias vps="ssh mystery@193.30.120.235 -p 51337"
 alias nas="ssh core@192.168.178.205"
 
 alias glr="git pull --rebase"
+#alias gd="git diff --word-diff=color"
+alias gpsup="git push --set-upstream"
+
+alias cdiff="diff --color=always"
+
+alias http="python -m http.server 8080"
 
 if ifinstalled exa ; then
   alias ls="exa --git -l"
