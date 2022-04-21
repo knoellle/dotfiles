@@ -6,13 +6,16 @@ import ast
 import json
 
 def main():
-    if len(sys.argv) < 2:
+    if len(sys.argv) != 3:
+        print("Invalid number of arguments")
         sys.exit(1)
-    url = "https://nolp.dhl.de/nextt-online-public/report_popup.jsp?piececode=" + sys.argv[1]
-    html = requests.get(url).text
+    # url = "https://nolp.dhl.de/nextt-online-public/report_popup.jsp?piececode=" + sys.argv[1]
+    url = "https://www.dhl.de/int-verfolgen/data/shipment?language=de"
+    html = requests.post(url, {'piececode': sys.argv[1], "zip": sys.argv[2], "international": False}).text
+    print(html)
     data = re.search(r"(?<=JSON\.parse\()(.*)(?=\),)", html, flags=re.MULTILINE)
     js = json.loads(ast.literal_eval(data.group(0)))
-    #print(json.dumps(js, indent=4))
+    print(json.dumps(js, indent=4))
     details = js.get("sendungen", "")[0].get("sendungsdetails", "")
     delivery = details.get("zustellung", "")
     progress = details.get("sendungsverlauf", "")
