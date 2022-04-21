@@ -1,12 +1,5 @@
 #!/bin/sh
-xrandr
 xrandr --auto
-# xrandr --output HDMI1 --mode 2560x1440 --above eDP1
-# xrandr --output HDMI-2 --above LVDS1
-# xrandr --output VGA1 --above LVDS1
-# xrandr --output VGA2 --above LVDS1
-# xrandr --output DP1 --above LVDS1
-# xrandr --output DP2 --above LVDS1
 xset r rate 200 30
 setxkbmap us cz_sk_de
 setxkbmap -option

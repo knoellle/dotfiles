@@ -23,7 +23,7 @@ ZSH_THEME="rkj-repos-modified"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -69,7 +69,6 @@ plugins=(
   encode64
   fzf
   git
-  magic-enter
   pip
   sudo
   systemd
@@ -170,13 +169,20 @@ alias pi="ssh pi@raspberrypi"
 alias vps="ssh mystery@193.30.120.235 -p 51337"
 alias nas="ssh core@192.168.178.205"
 
+alias gs="git status"
+alias gwipco='git commit --no-verify --no-gpg-sign -m '\''--wip-- [skip ci]'\'
 alias glr="git pull --rebase"
-#alias gd="git diff --word-diff=color"
+alias gdc="git diff --word-diff=color"
 alias gpsup="git push --set-upstream"
+alias watchdiff="watch -c git diff --color=always"
 
 alias cdiff="diff --color=always"
 
 alias http="python -m http.server 8080"
+alias ci="cargo build --all-features && cargo test --all-features && cargo clippy --all-features --profile dev -- -D warnings && cargo fmt --check"
+
+alias films="curl -sS https://writemd.rz.tuhh.de/P_wASTksR7OdY0aVfZPBOg/download | awk '/^#/{f=0} f * NF; /## Common/{f=1}'"
+alias filmrng="films | shuf -n 1"
 
 if ifinstalled exa ; then
   alias ls="exa --git -l"

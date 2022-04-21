@@ -26,7 +26,7 @@ IMAGE="-i $IMAGE"
 #if [ -f $HOME/Pictures/lockscreens/glitch-moon-$RES.png ]; then
 #    IMAGE="-i $HOME/Pictures/lockscreens/glitch-moon-$RES.png"
 #fi
-i3lock \
+i3lock-multimonitor \
 -c 000000             \
 --insidevercolor=$B   \
 --ringvercolor=$V     \

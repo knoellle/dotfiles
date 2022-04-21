@@ -4,7 +4,6 @@ allow_bold = true
 clickable_url = true
 dynamic_title = true
 font = Monospace 9
-# font = Hack 15
 fullscreen = true
 #geometry = 640x480
 #icon_name = terminal
