@@ -1,6 +1,7 @@
 #!/bin/sh
 xrandr --auto
-xset r rate 200 30
+xset r rate 200 50
+
 setxkbmap us cz_sk_de
 setxkbmap -option
 setxkbmap -option ctrl:nocaps
