@@ -49,7 +49,7 @@ class HVVClient(object):
     def findStation(self, name):
         data = {"version":34,"language":"en","theName":{"name":"","city":"","type":"UNKNOWN"},"maxList":15,"allowTypeSwitch":True}
         data["theName"]["name"] = name
-        r = self.session.post("https://geofox.hvv.de/gti/restapp/checkName", json=data, auth=HVVAuth(data))
+        r = self.session.post("https://www.hvv.de/geofox/checkName", json=data, auth=HVVAuth(data))
         try:
             js = r.json()
         except Exception as e:
@@ -61,7 +61,7 @@ class HVVClient(object):
             return None
 
     def getRoute(self, start, destination, time, timeIsDeparture=True):
-        r = self.session.post("https://geofox.hvv.de/gti/restapp/init", json={}, auth=HVVAuth({}))
+        r = self.session.post("https://www.hvv.de/geofox/init", json={}, auth=HVVAuth({}))
         time_object = {
             "date": "{:%d.%m.%Y}".format(time),
             "time": "{:%H:%M}".format(time)
@@ -72,7 +72,7 @@ class HVVClient(object):
         data["dest"] = destination
         data["time"] = time_object
         data["timeIsDeparture"] = timeIsDeparture
-        r = self.session.post("https://geofox.hvv.de/gti/restapp/getRoute", json=data, auth=HVVAuth(data))
+        r = self.session.post("https://www.hvv.de/geofox/getRoute", json=data, auth=HVVAuth(data))
         return(r.json())
 
     def prettyPrintRoute(self, route):

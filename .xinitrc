@@ -8,6 +8,7 @@ spawn
 setxkbmap us cz_sk_de
 nm-applet &
 fusuma &
+numlockx &
 
 # fix polkit stuff
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh &
