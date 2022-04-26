@@ -69,18 +69,58 @@ plugins=(
   encode64
   fzf
   git
+  grc
   pip
+  rust
   sudo
   systemd
-  taskwarrior
   wd
   you-should-use
+  zbell
   zsh-autosuggestions
   zsh-hulks
   zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# Plugin configuration
+
+## ZSH autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
+bindkey '^j' autosuggest-execute
+bindkey '^h' autosuggest-accept
+
+## Timing
+zsh_command_time() {
+    if [ -n "$ZSH_COMMAND_TIME" ]; then
+        hours=$(($ZSH_COMMAND_TIME/3600))
+        min=$((($ZSH_COMMAND_TIME/60)%60))
+        sec=$(($ZSH_COMMAND_TIME%60))
+        timer_show=""
+        if [ $hours -gt 0 ]; then
+            timer_show="$timer_show $hours""h"
+        fi
+        if [ $min -gt 0 ]; then
+            timer_show="$timer_show $min""m"
+        fi
+        if [ $sec -gt 0 ]; then
+            timer_show="$timer_show $sec""s"
+        fi
+        export ZSH_COMMAND_TIME=$timer_show
+    fi
+}
+
+## zbell
+zbell_duration=5
+zbell_ignore=(
+  $EDITOR
+  v
+  $PAGER
+  ssh
+  r
+  ranger
+)
 
 # User configuration
 
@@ -96,18 +136,13 @@ if [ -d "$HOME/adb-fastboot" ] ; then
 fi
 
 # Pretend to be xterm for ssh connections
-export TERM="xterm"
+export TERM="xterm-256color"
 
 # Enable touch scrolling in firefox
 export MOZ_USE_XINPUT2=1
 
 # Make qt5 behave
 export QT_QPA_PLATFORMTHEME=qt5ct
-
-# ZSH autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
-bindkey '^j' autosuggest-execute
-bindkey '^h' autosuggest-accept
 
 # Disable F13 inserting garbage characters
 bindkey -s "\e[25~" ""
@@ -231,26 +266,6 @@ fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh-agent-thing)" > /dev/null
 fi
-
-# Timing stuff
-zsh_command_time() {
-    if [ -n "$ZSH_COMMAND_TIME" ]; then
-        hours=$(($ZSH_COMMAND_TIME/3600))
-        min=$((($ZSH_COMMAND_TIME/60)%60))
-        sec=$(($ZSH_COMMAND_TIME%60))
-        timer_show=""
-        if [ $hours -gt 0 ]; then
-            timer_show="$timer_show $hours""h"
-        fi
-        if [ $min -gt 0 ]; then
-            timer_show="$timer_show $min""m"
-        fi
-        if [ $sec -gt 0 ]; then
-            timer_show="$timer_show $sec""s"
-        fi
-        export ZSH_COMMAND_TIME=$timer_show
-    fi
-}
 
 export PATH="$HOME/bin:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$PATH"
 
