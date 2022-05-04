@@ -234,6 +234,23 @@ samedir-widget() {
 zle -N samedir-widget
 bindkey '^n' samedir-widget
 
+function gwa()
+{
+  NAME="$(basename $(command git worktree list | head -n1 | cut -d' ' -f1))-$1"
+  NEW_WORKTREE_PATH="$(pwd)/../$NAME"
+  command git worktree add "$NEW_WORKTREE_PATH" "$(git rev-parse HEAD)"
+  cd "$NEW_WORKTREE_PATH"
+}
+
+alias gwl="git worktree list"
+
+function gwd
+{
+  ORIGINAL_WORKTREE="$(git worktree list | head -n1 | cut -d' ' -f1)"
+  command git worktree remove "$(pwd)"
+  cd $ORIGINAL_WORKTREE
+}
+
 function mcdir
 {
     command mkdir $1 && cd $1
