@@ -44,6 +44,13 @@ nmap("<C-j>", "<C-w>j")
 nmap("<C-k>", "<C-w>k")
 nmap("<C-l>", "<C-w>l")
 
+-- hulks
+imap('<C-t>', '<Esc>:.!cat /tmp/gamestate.txt <bar> grep "time " <bar> cut -d " " -f 2<Enter>A<Space>')
+nmap('<C-t>', ':.!cat /tmp/gamestate.txt <bar> grep "time " <bar> cut -d " " -f 2<Enter>A<Space>')
+
+-- rust
+nmap("<leader>i", ':lua require("rust-tools.inlay_hints").toggle_inlay_hints()<Enter>')
+
 local M = {}
 M.map = map
 M.imap = imap
