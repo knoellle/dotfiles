@@ -77,7 +77,7 @@ plugins=(
   wd
   you-should-use
   zbell
-  zsh-autosuggestions
+  # zsh-autosuggestions
   zsh-hulks
   zsh-syntax-highlighting
 )
@@ -87,9 +87,9 @@ source $ZSH/oh-my-zsh.sh
 # Plugin configuration
 
 ## ZSH autosuggestions
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
-bindkey '^j' autosuggest-execute
-bindkey '^h' autosuggest-accept
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
+# bindkey '^j' autosuggest-execute
+# bindkey '^h' autosuggest-accept
 
 ## Timing
 zsh_command_time() {
@@ -167,7 +167,7 @@ export GTK_THEME=Adwaita:dark
 alias simrobert="prime-run /home/mystery/hulks/nao/tools/SimRobot/build/SimRobot || read"
 alias simrobert-intel="/home/mystery/hulks/nao/tools/SimRobot/build/SimRobot"
 alias resim="(cd ~/hulks/nao && ./scripts/compile && (simrobert))"
-alias mate="(cd /home/mystery/hulks/nao && /home/mystery/venv/hulks/bin/python /home/mystery/hulks/nao/tools/mate/run.py&!)"
+alias mate="(cd /home/mystery/hulks/nao && /home/mystery/.venv/hulks/bin/python /home/mystery/hulks/nao-cpp/tools/mate/run.py&!)"
 alias fucking="sudo"
 alias please="sudo"
 alias imperative="sudo"
@@ -297,7 +297,4 @@ PERL_LOCAL_LIB_ROOT="/home/mystery/.perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LI
 PERL_MB_OPT="--install_base \"/home/mystery/.perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/mystery/.perl5"; export PERL_MM_OPT;
 
-# Show taskwarrior on startup
-# task next
-
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
+# export ZSH_AUTOSUGGEST_USE_ASYNC=1
