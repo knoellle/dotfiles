@@ -1,6 +1,6 @@
 -- Load the colorscheme
 vim.cmd([[syntax enable]])
-vim.cmd([[colorscheme base16-default-dark]])
+vim.cmd([[colorscheme base16-monokai]])
 
 vim.api.nvim_command("hi StatusLine guibg=#282828")
 
