@@ -35,3 +35,4 @@ export PATH="$HOME/.cargo/bin:$PATH"
 PATH="/usr/sbin:/sbin:/bin:/usr/games:$PATH"
 
 export QT_STYLE_OVERRIDE=adwaita-dark
+export CALIBRE_USE_DARK_PALETTE=1
