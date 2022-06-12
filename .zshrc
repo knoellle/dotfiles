@@ -286,7 +286,8 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh-agent-thing)" > /dev/null
 fi
 
-export PATH="$HOME/bin:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$PATH"
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$HOME/bin:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$GEM_HOME/bin:$PATH"
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 BASE16_SHELL_SET_BACKGROUND=false
