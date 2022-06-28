@@ -258,8 +258,7 @@ function gwj
 function gwd
 {
   ORIGINAL_WORKTREE="$(git worktree list | head -n1 | cut -d' ' -f1)"
-  command git worktree remove "$(pwd)"
-  cd $ORIGINAL_WORKTREE
+  command git worktree remove "$(pwd)" && cd $ORIGINAL_WORKTREE
 }
 
 function mcdir
