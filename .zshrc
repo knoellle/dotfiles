@@ -295,7 +295,7 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
 fi
 
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$HOME/bin:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$GEM_HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.nix-profile/bin/:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$GEM_HOME/bin:$PATH"
 
 BASE16_SHELL=$HOME/.config/base16-shell/
 BASE16_SHELL_SET_BACKGROUND=false
