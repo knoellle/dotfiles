@@ -15,6 +15,7 @@ ln -s ~/.dotfiles/.xinitrc -T ~/.xinitrc
 
 # .config
 ln -s ~/.dotfiles/.config/compton.conf ~/.config/compton.conf
+ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml
 
 mkdir -p ~/.config/newsboat
 ln -s ~/.dotfiles/.config/newsboat/config ~/.config/newsboat/config

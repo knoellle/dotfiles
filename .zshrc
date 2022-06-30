@@ -82,7 +82,7 @@ plugins=(
   wd
   you-should-use
   zbell
-  # zsh-autosuggestions
+  zsh-autosuggestions
   zsh-hulks
   zsh-syntax-highlighting
 )
@@ -92,9 +92,9 @@ source $ZSH/oh-my-zsh.sh
 # Plugin configuration
 
 ## ZSH autosuggestions
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
-# bindkey '^j' autosuggest-execute
-# bindkey '^h' autosuggest-accept
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
+bindkey '^j' autosuggest-execute
+bindkey '^h' autosuggest-accept
 
 ## Timing
 zsh_command_time() {
@@ -178,6 +178,9 @@ alias please="sudo"
 alias yolo="sudo"
 alias gib="xclip -selection c"
 alias take="xclip -selection c -o"
+alias cr="cargo run"
+alias ct="cargo test"
+alias cl="cargo clippy"
 alias v="/usr/bin/nvim"
 alias p="python"
 alias p2="python2"
@@ -308,4 +311,6 @@ PERL_LOCAL_LIB_ROOT="/home/mystery/.perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LI
 PERL_MB_OPT="--install_base \"/home/mystery/.perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/mystery/.perl5"; export PERL_MM_OPT;
 
-# export ZSH_AUTOSUGGEST_USE_ASYNC=1
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+eval "$(starship init zsh)"
