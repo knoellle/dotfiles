@@ -12,10 +12,11 @@ $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
-$directory
+$directory\
+$nix_shell
 [└>](bold green) """
 
-right_format = "$rust$python"
+right_format = "$rust$python$nix_shell"
 
 [package]
 disabled = true
@@ -33,3 +34,7 @@ format = "[$user]($style)"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
+
+[nix_shell]
+symbol = "❄️"
+format = '[$symbol$name $state]($style) '
