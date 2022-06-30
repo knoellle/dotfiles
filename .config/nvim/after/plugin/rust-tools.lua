@@ -114,3 +114,5 @@ local opts = {
 }
 
 require("rust-tools").setup(opts)
+require('rust-tools.runnables').runnables()
+require('rust-tools.inlay_hints').set_inlay_hints()
