@@ -65,10 +65,8 @@ setopt SHARE_HISTORY
 plugins=(
   archlinux
   colored-man-pages
-  command-time
   docker
   docker-compose
-  encode64
   fzf
   git
   grc
@@ -76,11 +74,9 @@ plugins=(
   rust
   sudo
   systemd
-  wd
   you-should-use
   zbell
   zsh-autosuggestions
-  zsh-hulks
   zsh-syntax-highlighting
 )
 
@@ -95,26 +91,6 @@ export PATH=$OLDPATH
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
 bindkey '^j' autosuggest-execute
 bindkey '^h' autosuggest-accept
-
-## Timing
-zsh_command_time() {
-    if [ -n "$ZSH_COMMAND_TIME" ]; then
-        hours=$(($ZSH_COMMAND_TIME/3600))
-        min=$((($ZSH_COMMAND_TIME/60)%60))
-        sec=$(($ZSH_COMMAND_TIME%60))
-        timer_show=""
-        if [ $hours -gt 0 ]; then
-            timer_show="$timer_show $hours""h"
-        fi
-        if [ $min -gt 0 ]; then
-            timer_show="$timer_show $min""m"
-        fi
-        if [ $sec -gt 0 ]; then
-            timer_show="$timer_show $sec""s"
-        fi
-        export ZSH_COMMAND_TIME=$timer_show
-    fi
-}
 
 ## zbell
 zbell_duration=5
