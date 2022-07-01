@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=/home/mystery/.oh-my-zsh
 
@@ -8,7 +5,7 @@ export ZSH=/home/mystery/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="agnoster"
-ZSH_THEME="rkj-repos-modified"
+# ZSH_THEME="rkj-repos-modified"
 # ZSH_THEME="jnrowe"
 
 # Set list of themes to load
@@ -87,7 +84,10 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+# make sure no plugin fucks with my PATH
+OLDPATH=$PATH
 source $ZSH/oh-my-zsh.sh
+export PATH=$OLDPATH
 
 # Plugin configuration
 
@@ -128,54 +128,16 @@ zbell_ignore=(
 )
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 export EDITOR="nvim"
-
-if [ -d "$HOME/adb-fastboot" ] ; then
-    export PATH="$HOME/adb-fastboot:$PATH"
-fi
 
 # Pretend to be xterm for ssh connections
 export TERM="xterm-256color"
-
-# Enable touch scrolling in firefox
-export MOZ_USE_XINPUT2=1
-
-# Make qt5 behave
-export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Disable F13 inserting garbage characters
 bindkey -s "\e[25~" ""
 
 export GTK_THEME=Adwaita:dark
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias simrobert="prime-run /home/mystery/hulks/nao/tools/SimRobot/build/SimRobot || read"
-alias simrobert-intel="/home/mystery/hulks/nao/tools/SimRobot/build/SimRobot"
-alias resim="(cd ~/hulks/nao && ./scripts/compile && (simrobert))"
-alias mate="(cd /home/mystery/hulks/nao && /home/mystery/.venv/hulks/bin/python /home/mystery/hulks/nao-cpp/tools/mate/run.py&!)"
-alias fucking="sudo"
-alias please="sudo"
-alias yolo="sudo"
 alias gib="xclip -selection c"
 alias take="xclip -selection c -o"
 alias cr="cargo run"
@@ -183,17 +145,12 @@ alias ct="cargo test"
 alias cl="cargo clippy"
 alias v="/usr/bin/nvim"
 alias p="python"
-alias p2="python2"
-alias j="julia"
 alias r="ranger"
 alias c="cargo"
-alias sranger="source ranger"
-alias sr="sranger"
+alias sr="source ranger"
 alias cm="cmatrix -a -u3"
-alias venv="source venv"
 alias btc="bluetoothctl"
-alias resource="source ~/.zshrc"
-alias rs="resource"
+alias rs="source ~/.zshrc"
 alias fv='v $(fzf)'
 alias xev='xev | grep "keycode"'
 alias wtf='journalctl -r'
@@ -203,20 +160,13 @@ alias zconf="nvim ~/.zshrc"
 alias aconf="nvim ~/.config/awesome/rc.lua"
 alias atconf="nvim ~/.config/awesome/themes/hulks-dark/theme.lua"
 alias vconf="nvim ~/.config/nvim/init.vim"
-# taskwarrior
-alias ts="task sync"
-alias ta="task add"
 # ssh
 alias rechenknecht="ssh -X knoellle@10.2.24.6"
 alias pi="ssh pi@raspberrypi"
 alias vps="ssh mystery@193.30.120.235 -p 51337"
 alias nas="ssh core@192.168.178.205"
 
-alias gs="git status"
 alias gwipco='git commit --no-verify --no-gpg-sign -m '\''--wip-- [skip ci]'\'
-alias glr="git pull --rebase"
-alias gdc="git diff --word-diff=color"
-alias gpsup="git push --set-upstream"
 alias watchdiff="watch -c git diff --color=always"
 
 alias cdiff="diff --color=always"
@@ -294,19 +244,9 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh-agent-thing)" > /dev/null
 fi
 
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$HOME/bin:$HOME/.nix-profile/bin/:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$GEM_HOME/bin:$PATH"
-
 BASE16_SHELL=$HOME/.config/base16-shell/
 BASE16_SHELL_SET_BACKGROUND=false
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-# perl
-PATH="/home/mystery/.perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/mystery/.perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/mystery/.perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/mystery/.perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/mystery/.perl5"; export PERL_MM_OPT;
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
