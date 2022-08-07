@@ -15,6 +15,7 @@ packer.startup(function(use)
   use("onsails/lspkind-nvim")
   use("williamboman/nvim-lsp-installer")
   use("simrat39/rust-tools.nvim")
+  use("kmonad/kmonad-vim")
 
   -- dap
   use("mfussenegger/nvim-dap")
