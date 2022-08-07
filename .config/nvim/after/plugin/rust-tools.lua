@@ -103,10 +103,13 @@ local opts = {
 		settings = {
 			["rust-analyzer"] = {
 				cargo = {
-					allFeatures = true,
+					features = "all",
 				},
 				assist = {
 					importEnforceGranularity = true,
+				},
+				checkOnSave = {
+					command = "clippy",
 				},
 			},
 		},
@@ -114,5 +117,4 @@ local opts = {
 }
 
 require("rust-tools").setup(opts)
-require('rust-tools.runnables').runnables()
 require('rust-tools.inlay_hints').set_inlay_hints()
