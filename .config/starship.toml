@@ -20,6 +20,18 @@ $status
 
 right_format = "$rust$python$nix_shell"
 
+[git_status]
+conflicted = "=$count"
+ahead = "⇡$count"
+behind = "⇣$count"
+diverged = "⇕$count"
+untracked = "?$count"
+stashed = "\\$$count"
+modified = "!$count"
+staged = "+$count"
+renamed = "»$count"
+deleted = "✘"
+
 [time]
 disabled = false
 format = "[$time]($style) "
