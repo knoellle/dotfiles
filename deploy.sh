@@ -14,6 +14,8 @@ ln -s ~/.dotfiles/.zshrc -T ~/.zshrc
 ln -s ~/.dotfiles/.xinitrc -T ~/.xinitrc
 
 # .config
+mkdir -p ~/.config/
+
 ln -s ~/.dotfiles/.config/compton.conf ~/.config/compton.conf
 ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml
 
@@ -24,8 +26,9 @@ ln -s ~/.dotfiles/.config/newsboat/urls ~/.config/newsboat/urls
 mkdir -p ~/.config/termite
 ln -s ~/.dotfiles/.config/termite/config ~/.config/termite/config
 
-mkdir -p ~/.config/nvim
-ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+ln -sn ~/.dotfiles/.config/nvim ~/.config/nvim
+
+ln -sn ~/.dotfiles/.config/kmonad ~/.config/kmonad
 
 mkdir -p ~/.config/dunst
 ln -s ~/.dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
