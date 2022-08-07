@@ -135,7 +135,7 @@ alias suspend='systemctl suspend'
 alias zconf="nvim ~/.zshrc"
 alias aconf="nvim ~/.config/awesome/rc.lua"
 alias atconf="nvim ~/.config/awesome/themes/hulks-dark/theme.lua"
-alias vconf="nvim ~/.config/nvim/init.vim"
+alias vconf="(cd ~/.config/nvim; nvim ~/.config/nvim/init.lua)"
 # ssh
 alias rechenknecht="ssh -X knoellle@10.2.24.6"
 alias pi="ssh pi@raspberrypi"

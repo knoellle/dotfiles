@@ -31,15 +31,13 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 # Switch escape and caps if tty:
 # sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null
 
-export PATH="$HOME/.cargo/bin:$PATH"
-PATH="/usr/sbin:/sbin:/bin:/usr/games:$PATH"
-export PATH="$HOME/bin:$HOME/.nix-profile/bin/:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$GEM_HOME/bin:$PATH"
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+
+export PATH="$HOME/bin:$HOME/.cargo/bin:/usr/sbin:/sbin:/bin:/usr/games:$HOME/.nix-profile/bin/:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$GEM_HOME/bin:$PATH"
 
 if [ -d "$HOME/adb-fastboot" ] ; then
     export PATH="$HOME/adb-fastboot:$PATH"
 fi
-
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 
 # Enable touch scrolling in firefox
 export MOZ_USE_XINPUT2=1
@@ -48,3 +46,5 @@ export MOZ_USE_XINPUT2=1
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_STYLE_OVERRIDE=adwaita-dark
 export CALIBRE_USE_DARK_PALETTE=1
+
+export RUST_BACKTRACE=1

@@ -2,7 +2,6 @@
 xset r rate 200 50
 
 setxkbmap us cz_sk_de
-setxkbmap -option
 setxkbmap -option ctrl:nocaps
 setxkbmap -option caps:control
 setxkbmap -option shift:both_capslock
