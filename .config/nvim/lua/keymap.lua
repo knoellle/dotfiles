@@ -14,6 +14,10 @@ local function nmap(lhs, rhs, opts)
 	map("n", lhs, rhs, opts)
 end
 
+local function tmap(lhs, rhs, opts)
+	map("t", lhs, rhs, opts)
+end
+
 -- Map leader to space
 vim.g.mapleader = " "
 
@@ -51,8 +55,12 @@ nmap('<C-t>', ':.!cat /tmp/gamestate.txt <bar> grep "time " <bar> cut -d " " -f 
 -- rust
 nmap("<leader>i", ':lua require("rust-tools.inlay_hints").toggle_inlay_hints()<Enter>')
 
+-- terminal mode
+tmap("<Esc>", "<C-_><C-N><Esc>")
+
 local M = {}
 M.map = map
 M.imap = imap
 M.nmap = nmap
+M.tmap = tmap
 return M
