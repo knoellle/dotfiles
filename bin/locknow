@@ -1,7 +1,5 @@
 #!/bin/bash
 
-setxkbmap us cz_sk_de
-
 # disable compositor for privacy reasons
 killall picom
 picom=$?
