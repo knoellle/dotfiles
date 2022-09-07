@@ -56,7 +56,11 @@ nmap('<C-t>', ':.!cat /tmp/gamestate.txt <bar> grep "time " <bar> cut -d " " -f 
 nmap("<leader>i", ':lua require("rust-tools.inlay_hints").toggle_inlay_hints()<Enter>')
 
 -- terminal mode
-tmap("<Esc>", "<C-_><C-N><Esc>")
+tmap("<Esc>", "<C-\\><C-N><Esc>")
+tmap("<C-h>", "<C-\\><C-N><C-w>h")
+tmap("<C-j>", "<C-\\><C-N><C-w>j")
+tmap("<C-k>", "<C-\\><C-N><C-w>k")
+tmap("<C-l>", "<C-\\><C-N><C-w>l")
 
 local M = {}
 M.map = map
