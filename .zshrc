@@ -77,7 +77,7 @@ plugins=(
   you-should-use
   zbell
   zsh-autosuggestions
-  zsh-syntax-highlighting
+  fast-syntax-highlighting
 )
 
 # make sure no plugin fucks with my PATH
