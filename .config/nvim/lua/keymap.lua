@@ -52,9 +52,6 @@ nmap("<C-l>", "<C-w>l")
 imap('<C-t>', '<Esc>:.!cat /tmp/gamestate.txt <bar> grep "time " <bar> cut -d " " -f 2<Enter>A<Space>')
 nmap('<C-t>', ':.!cat /tmp/gamestate.txt <bar> grep "time " <bar> cut -d " " -f 2<Enter>A<Space>')
 
--- rust
-nmap("<leader>i", ':lua require("rust-tools.inlay_hints").toggle_inlay_hints()<Enter>')
-
 -- terminal mode
 tmap("<Esc>", "<C-\\><C-N><Esc>")
 tmap("<C-h>", "<C-\\><C-N><C-w>h")
