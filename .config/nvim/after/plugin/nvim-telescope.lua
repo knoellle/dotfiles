@@ -48,10 +48,3 @@ nmap("<leader>rg", builtin.grep_string)
 nmap("<leader>gb", builtin.git_branches)
 nmap("<leader>gs", builtin.git_status)
 nmap("<leader>ga", telescope.extensions.githubcoauthors.coauthors)
-
--- telescope-dap
-nmap("<leader>dcc", telescope.extensions.dap.commands)
-nmap("<leader>dco", telescope.extensions.dap.configurations)
-nmap("<leader>dlb", telescope.extensions.dap.list_breakpoints)
-nmap("<leader>dv", telescope.extensions.dap.variables)
-nmap("<leader>df", telescope.extensions.dap.frames)

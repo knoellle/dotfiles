@@ -17,21 +17,6 @@ packer.startup(function(use)
   use("simrat39/rust-tools.nvim")
   use("kmonad/kmonad-vim")
 
-  -- dap
-  use("mfussenegger/nvim-dap")
-  use({
-    "rcarriga/nvim-dap-ui",
-    requires = "mfussenegger/nvim-dap",
-  })
-  use({
-    "theHamsta/nvim-dap-virtual-text",
-    requires = "mfussenegger/nvim-dap",
-  })
-  use({
-    "nvim-telescope/telescope-dap.nvim",
-    requires = { "nvim-telescope/telescope.nvim" },
-  })
-
   -- treesitter
   use({
     "nvim-treesitter/nvim-treesitter",
