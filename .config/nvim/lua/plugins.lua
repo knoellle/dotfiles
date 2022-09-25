@@ -17,6 +17,17 @@ packer.startup(function(use)
   use("simrat39/rust-tools.nvim")
   use("kmonad/kmonad-vim")
 
+  use{
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
   -- treesitter
   use({
     "nvim-treesitter/nvim-treesitter",
