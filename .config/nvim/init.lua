@@ -4,12 +4,13 @@ local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.n
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   packer_bootstrap = vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.cmd [[packadd packer.nvim]]
+else
+  require('packer')
+
+  -- must be loaded before any other lua plugins
+  require("impatient")
 end
-
-require('packer')
-
--- must be loaded before any other lua plugins
-require("impatient")
 
 require('packer').startup(function(use)
   require("plugins")
