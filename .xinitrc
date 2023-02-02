@@ -44,6 +44,8 @@ elif [ "$wm" == "dwm" ] ; then
 		new_csum=$(sha1sum $(which dwm))
 		sleep 0.5
 	done
+elif [ "$wm" == "qtile" ] ; then
+	exec qtile start
 elif [ "$wm" == "awesome" ] ; then
 	exec awesome >> ~/.cache/awesome/log 2>> ~/.cache/awesome/err
 fi
