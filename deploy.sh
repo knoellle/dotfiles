@@ -39,6 +39,10 @@ ln -s ~/.dotfiles/.config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
 mkdir -p ~/.config/alacritty
 ln -s ~/.dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty
 
+ln -sn ~/.dotfiles/.config/zellij ~/.config/zellij
+
+ln -sn ~/.dotfiles/.config/helix ~/.config/helix
+
 # ~/bin
 mkdir -p ~/bin
 for file in ~/.dotfiles/bin/*; do

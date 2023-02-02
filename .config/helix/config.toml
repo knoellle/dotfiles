@@ -1,0 +1,27 @@
+theme = "ayu_dark"
+
+[editor]
+bufferline = "always"
+line-number = "relative"
+true-color = true
+idle-timeout = 0
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+tabpad = "·"
+
+[editor.lsp]
+display-messages = true
