@@ -23,9 +23,9 @@
 )
 
 (deflayer navigation
-  _    _    _    _    @v$  _    @v^  _    _    _    @v0  ß    _    _
-  _    _    @vw  @vnv _    _    _    _    _    _    _    ü    _    _
-  _    _    _    _    _    _    left down up   rght ö    ä    _
+  _    _    _    _    @v$  _    @v^  _    _    _    @v0  RA-- _    _
+  _    _    @vw  @vnv _    _    _    _    _    _    _    RA-[ _    _
+  _    _    _    _    _    _    left down up   rght RA-; RA-' _
   _    _    _    _    _    @vb  _    _    _    _    _    _
   _    _    _              _              _    _
 )
