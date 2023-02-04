@@ -25,3 +25,22 @@ tabpad = "·"
 
 [editor.lsp]
 display-messages = true
+
+[keys.normal]
+"K" = "hover"
+"0" = "goto_line_start"
+"$" = "goto_line_end"
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
+
+[keys.select]
+"0" = "goto_line_start"
+"$" = "goto_line_end"
+
+[keys.normal.space]
+"j" = "goto_previous_buffer"
+"k" = "goto_next_buffer"
+"e" = "file_picker"
+"c" = ":buffer-close"
