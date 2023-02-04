@@ -203,6 +203,11 @@ function pac
     source ~/.venv/$1/bin/activate
 }
 
+function vpn
+{
+    sudo wg-quick $1 nas-home
+}
+
 gms () {
         trackingBranch=$1
         git merge --squash $trackingBranch
