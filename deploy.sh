@@ -43,6 +43,8 @@ ln -sn ~/.dotfiles/.config/zellij ~/.config/zellij
 
 ln -sn ~/.dotfiles/.config/helix ~/.config/helix
 
+ln -sn ~/.dotfiles/.config/hypr ~/.config/hypr
+
 # ~/bin
 mkdir -p ~/bin
 for file in ~/.dotfiles/bin/*; do
