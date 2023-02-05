@@ -26,9 +26,9 @@ ln -s ~/.dotfiles/.config/newsboat/urls ~/.config/newsboat/urls
 mkdir -p ~/.config/termite
 ln -s ~/.dotfiles/.config/termite/config ~/.config/termite/config
 
-ln -sn ~/.dotfiles/.config/nvim ~/.config/nvim
+ln -sT ~/.dotfiles/.config/nvim ~/.config/nvim
 
-ln -sn ~/.dotfiles/.config/kmonad ~/.config/kmonad
+ln -sT ~/.dotfiles/.config/kmonad ~/.config/kmonad
 
 mkdir -p ~/.config/dunst
 ln -s ~/.dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
@@ -39,11 +39,13 @@ ln -s ~/.dotfiles/.config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
 mkdir -p ~/.config/alacritty
 ln -s ~/.dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty
 
-ln -sn ~/.dotfiles/.config/zellij ~/.config/zellij
+ln -sT ~/.dotfiles/.config/zellij ~/.config/zellij
 
-ln -sn ~/.dotfiles/.config/helix ~/.config/helix
+ln -sT ~/.dotfiles/.config/helix ~/.config/helix
 
-ln -sn ~/.dotfiles/.config/hypr ~/.config/hypr
+ln -sT ~/.dotfiles/.config/hypr ~/.config/hypr
+
+ln -sT ~/.dotfiles/.config/waybar ~/.config/waybar
 
 # ~/bin
 mkdir -p ~/bin
