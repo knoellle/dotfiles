@@ -47,6 +47,8 @@ ln -sT ~/.dotfiles/.config/hypr ~/.config/hypr
 
 ln -sT ~/.dotfiles/.config/waybar ~/.config/waybar
 
+ln -sT ~/.dotfiles/.config/zathura ~/.config/zathura
+
 # ~/bin
 mkdir -p ~/bin
 for file in ~/.dotfiles/bin/*; do
