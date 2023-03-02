@@ -42,6 +42,13 @@ packer.startup(function(use)
     config = function() require("guess-indent").setup() end,
   })
 
+  use {
+    'declancm/cinnamon.nvim',
+    config = function() require('cinnamon').setup{
+      default_delay = 1,
+    } end
+  }
+
   -- Autocomplete
   use({
     "hrsh7th/nvim-cmp",
