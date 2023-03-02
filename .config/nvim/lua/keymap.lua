@@ -48,6 +48,15 @@ nmap("<C-j>", "<C-w>j")
 nmap("<C-k>", "<C-w>k")
 nmap("<C-l>", "<C-w>l")
 
+nmap("<C-left>", "<C-w>h")
+nmap("<C-down>", "<C-w>j")
+nmap("<C-up>", "<C-w>k")
+nmap("<C-right>", "<C-w>l")
+
+-- allow ctrl+tab switch buffers
+nmap("<C-Tab>", ":bnext<Enter>")
+nmap("<CS-Tab>", ":bprevious<Enter>")
+
 -- hulks
 imap('<C-t>', '<Esc>:.!cat /tmp/gamestate.txt <bar> grep "time " <bar> cut -d " " -f 2<Enter>A<Space>')
 nmap('<C-t>', ':.!cat /tmp/gamestate.txt <bar> grep "time " <bar> cut -d " " -f 2<Enter>A<Space>')

@@ -40,14 +40,11 @@ mkdir -p ~/.config/alacritty
 ln -s ~/.dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty
 
 ln -sT ~/.dotfiles/.config/zellij ~/.config/zellij
-
 ln -sT ~/.dotfiles/.config/helix ~/.config/helix
-
 ln -sT ~/.dotfiles/.config/hypr ~/.config/hypr
-
 ln -sT ~/.dotfiles/.config/waybar ~/.config/waybar
-
 ln -sT ~/.dotfiles/.config/zathura ~/.config/zathura
+ln -sT ~/.dotfiles/.config/kitty ~/.config/kitty
 
 # ~/bin
 mkdir -p ~/bin
