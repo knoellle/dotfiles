@@ -38,6 +38,9 @@ nmap("<leader>sv", "<cmd>vsplit<CR>")
 -- no search highlight
 nmap("<leader><space>", "<cmd>noh<CR>")
 
+-- quick access :w
+nmap("<leader>w", vim.cmd.write)
+
 -- maintain visual mode after shifting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
