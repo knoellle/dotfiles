@@ -71,6 +71,8 @@ tmap("<C-j>", "<C-\\><C-N><C-w>j")
 tmap("<C-k>", "<C-\\><C-N><C-w>k")
 tmap("<C-l>", "<C-\\><C-N><C-w>l")
 
+nmap("<Esc>", require("notify").dismiss)
+
 local M = {}
 M.map = map
 M.imap = imap
