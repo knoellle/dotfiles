@@ -13,9 +13,39 @@ packer.startup(function(use)
   use("neovim/nvim-lspconfig")
   use("nvim-lua/lsp-status.nvim")
   use("onsails/lspkind-nvim")
-  use("williamboman/nvim-lsp-installer")
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
   use("simrat39/rust-tools.nvim")
   use("kmonad/kmonad-vim")
+  use{'kaarmu/typst.vim', ft = {'typst'}}
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+          on_attach = function(client, bufnr)
+              if client.supports_method("textDocument/formatting") then
+                  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                  vim.api.nvim_create_autocmd("BufWritePre", {
+                      group = augroup,
+                      buffer = bufnr,
+                      callback = function()
+                          -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                          vim.lsp.buf.format({ bufnr = bufnr })
+                      end,
+                  })
+              end
+          end,
+          sources = {
+              null_ls.builtins.formatting.stylua,
+              null_ls.builtins.formatting.black,
+          },
+      })
+    end,
+    requires = { "nvim-lua/plenary.nvim" },
+  })
 
   use{
     "folke/which-key.nvim",
