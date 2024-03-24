@@ -172,9 +172,34 @@ bindkey '^n' samedir-widget
 function gwa()
 {
   NAME="$(basename $(command git worktree list | head -n1 | cut -d' ' -f1))-$1"
-  NEW_WORKTREE_PATH="$(command git worktree list | head -n1 | cut -d' ' -f1)/../$NAME"
+  CURRENT_WORKTREE_PATH="$(git rev-parse --show-toplevel)"
+  BASE_WORKTREE_PATH="$(command git worktree list | head -n1 | cut -d' ' -f1)"
+  NEW_WORKTREE_PATH="$CURRENT_WORKTREE_PATH/../$NAME"
+  echo $NAME
+  echo $CURRENT_WORKTREE_PATH
+  echo $NEW_WORKTREE_PATH
   command git worktree add "$NEW_WORKTREE_PATH" "$(git rev-parse HEAD)"
   cd "$NEW_WORKTREE_PATH"
+  
+  case $3 in
+    current)
+      TARGET_SOURCE="$CURRENT_WORKTREE_PATH/target"
+      ;;
+    main)
+      TARGET_SOURCE="$BASE_WORKTREE_PATH/target"
+      ;;
+  esac
+  case $2 in
+    share)
+      echo "Sharing target folder: $(du -sh "$CURRENT_WORKTREE_PATH/target")"
+      ln -sT "$TARGET_SOURCE" "$NEW_WORKTREE_PATH/target"
+      ;;
+
+    clone)
+      echo "Cloning target folder: $(du -sh "$CURRENT_WORKTREE_PATH/target")"
+      rsync -a --info=progress2 --no-inc-recursive "$TARGET_SOURCE" "$NEW_WORKTREE_PATH"
+      ;;
+  esac
 }
 alias gwl="git worktree list"
 function gwj
@@ -208,6 +233,7 @@ function vpn
     sudo wg-quick $1 nas-home
 }
 
+unalias gms
 gms () {
         trackingBranch=$1
         git merge --squash $trackingBranch
