@@ -23,7 +23,7 @@ function getip
 function getallips
 {
     for interface in /sys/class/net/* ; do
-        echo $(basename $interface): $(getip $(basename $interface))
+        echo $(getip $(basename $interface))
     done
 }
 
@@ -35,8 +35,7 @@ function ytviews
 # Create/clear file
 > $CACHE
 
-getallips >> $CACHE
-cat /tmp/gamestate.txt | grep -v raw >> $CACHE
-#ytviews https://www.youtube.com/watch\?v\=4Y1lZQsyuSQ "Rezo CDU" >> $CACHE
+getallips | column -t >> $CACHE
+# cat /tmp/gamestate.txt | grep -v raw >> $CACHE
 
 cat $CACHE
