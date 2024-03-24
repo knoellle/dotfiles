@@ -24,9 +24,9 @@
 
 (deflayer navigation
   _      _      _      _      @v$    _      @v^    _      _      _      @v0    RA--   _      _
-  _      _      @vw    @vnv   _      _      _      _      _      _      _      RA-[   _      _
+  _      _      @vw    €      _      _      _      _      _      _      _      RA-[   _      _
   _      _      _      _      _      _      left   down   up     rght   RA-;   RA-'   _
-  _      _      _      _      _      @vb    _      @mcr   _      _      _      _
+  _      _      _      _      @ve    @vb    _      @mcr   _      _      _      _
   _      _      _                    _                    _      _
 )
 
@@ -50,7 +50,7 @@
   nav (layer-toggle navigation)
   mcr (layer-next macros)
 
-  vnv (cmd-button "vedit")
+  ve (cmd-button "vedit")
   join #(/ j o i n space s o u l x x 3)
   inv #(/ i n v i t e space s o u l x x 3)
   wfm #(M y space p l e a s u r e , space p l e a s e space d o space l e a v e space a space r e v i e w space o n space w a r f r a m e . m a r k e t / p r o f i l e / M y s t e r y 0 u s , space t h a n k space y o u !

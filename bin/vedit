@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+sleep 0.1
+
 tempfile="$(mktemp)"
 window=$(xdotool getactivewindow)
 xdotool key Ctrl+a
@@ -6,7 +8,7 @@ xdotool key Ctrl+c
 
 sleep 0.1
 xclip -out -selection clipboard > $tempfile
-neovide --nofork --x11-wm-class floating $tempfile
+neovide --no-fork --x11-wm-class floating $tempfile
 cat $tempfile | xclip -in -rmlastnl -selection clipboard
 
 xdotool windowactivate "$window"
