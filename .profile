@@ -47,4 +47,4 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_STYLE_OVERRIDE=adwaita-dark
 export CALIBRE_USE_DARK_PALETTE=1
 
-export RUST_BACKTRACE=1
+# export RUST_BACKTRACE=1

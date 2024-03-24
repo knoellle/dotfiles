@@ -232,4 +232,6 @@ BASE16_SHELL_SET_BACKGROUND=false
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
+eval "$(luarocks path)"
+eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
