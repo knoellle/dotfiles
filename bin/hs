@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+
+# ensure scream is running
+# pidof scream || scream &!
+
+bluetoothctl power on
+
+MAC=CC:98:8B:E3:12:5B
+case $1 in
+
+    con*)
+        bluetoothctl connect $MAC
+        ;;
+
+    dis*)
+        bluetoothctl disconnect $MAC
+        ;;
+
+    rec*)
+        bluetoothctl disconnect $MAC
+        bluetoothctl connect $MAC
+        ;;
+
+    rep*)
+        bluetoothctl remove $MAC
+        timeout 3 bluetoothctl scan on #| tee /proc/self/fd/2 | grep "$MAC" | head -n 1
+        bluetoothctl connect $MAC
+        bluetoothctl pair $MAC
+        bluetoothctl trust $MAC
+        ;;
+    pair)
+        timeout 3 bluetoothctl scan on #| tee /proc/self/fd/2 | grep "$MAC" | head -n 1
+        bluetoothctl connect $MAC
+        bluetoothctl pair $MAC
+        bluetoothctl trust $MAC
+        ;;
+
+esac

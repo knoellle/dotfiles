@@ -1,0 +1,27 @@
+#!/bin/bash
+
+targets=()
+action=()
+separator_found=0
+
+for arg in $@;
+do
+  case "$arg" in
+    --)
+      separator_found=1
+      ;;
+    *)
+      if [ $separator_found -eq 0 ]; then
+        targets+=($arg)
+      else
+        action+=($arg)
+      fi
+      ;;
+  esac
+done
+
+echo Targets: ${targets[@]}
+echo Action: ${action[@]}
+echo
+
+inotifywait -m -e modify -e create -e move ${targets[@]} | while read; do ${action[@]}; done
