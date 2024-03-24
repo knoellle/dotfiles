@@ -245,6 +245,11 @@ function alert
     tee -p >&2 | sed '/^[[:blank:]]*$/d' | tail -"${1:-1}" | sed 's/\x1b\[[0-9;]*m//g' | xargs -I {} notify-send "${3:-Command finished}" " {}" -u ${2:-normal} -t ${4:-5000}
 }
 
+function fix-routes
+{
+  ssh nao@10.1.24.$1 -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null "sudo ip r add 10.2.0.0/16 dev enp4s0 via 10.1.24.1"
+}
+
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing
 fi
