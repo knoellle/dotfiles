@@ -45,6 +45,7 @@ ln -sT ~/.dotfiles/.config/hypr ~/.config/hypr
 ln -sT ~/.dotfiles/.config/waybar ~/.config/waybar
 ln -sT ~/.dotfiles/.config/zathura ~/.config/zathura
 ln -sT ~/.dotfiles/.config/kitty ~/.config/kitty
+sudo ln -sT ~/.dotfiles/.config/keyd /etc/keyd
 
 # ~/bin
 mkdir -p ~/bin
