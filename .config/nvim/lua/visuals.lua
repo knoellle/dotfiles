@@ -10,13 +10,13 @@ vim.g.lsp_utils_location_opts = { mode = "editor" }
 vim.g.lsp_utils_symbols_opts = { mode = "editor" }
 
 local signs = {
-	Error = " ",
-	Warning = " ",
-	Hint = " ",
-	Information = " ",
+  Error = " ",
+  Warning = " ",
+  Hint = " ",
+  Information = " ",
 }
 
 for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end

@@ -17,3 +17,4 @@ vim.opt.updatetime = 250
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.list = true
 vim.opt.listchars = "trail:-,tab:<->"
+vim.opt.shortmess:append("I")

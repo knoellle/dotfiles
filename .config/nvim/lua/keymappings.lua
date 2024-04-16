@@ -14,6 +14,10 @@ local function nmap(lhs, rhs, opts)
 	map("n", lhs, rhs, opts)
 end
 
+local function vmap(lhs, rhs, opts)
+	map("v", lhs, rhs, opts)
+end
+
 local function tmap(lhs, rhs, opts)
 	map("t", lhs, rhs, opts)
 end
@@ -77,5 +81,6 @@ local M = {}
 M.map = map
 M.imap = imap
 M.nmap = nmap
+M.vmap = vmap
 M.tmap = tmap
 return M
