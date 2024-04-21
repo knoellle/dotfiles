@@ -89,6 +89,9 @@ local options = {
       require("ltex-utils").on_attach(bufnr)
     end,
   },
+  ["clangd"] = {
+    cmd = {"clangd", "--offset-encoding=utf-16"},
+  }
 }
 
 return options

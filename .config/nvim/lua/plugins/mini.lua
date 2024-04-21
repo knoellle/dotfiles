@@ -41,6 +41,17 @@ return {
         highlight = keys.surround.highlight,
         replace = keys.surround.replace,
       },
+      custom_surroundings = {
+        ['('] = { output = { left = '(', right = ')' } },
+        [')'] = { output = { left = '( ', right = ' )' } },
+        ['['] = { output = { left = '[', right = ']' } },
+        [']'] = { output = { left = '[ ', right = ' ]' } },
+        ['{'] = { output = { left = '{', right = '}' } },
+        ['}'] = { output = { left = '{ ', right = ' }' } },
+        ['<'] = { output = { left = '<', right = '>' } },
+        ['>'] = { output = { left = '< ', right = ' >' } },
+      },
+      respect_selection_type= true,
     },
     config = function(_, opts)
       require("mini.surround").setup(opts)

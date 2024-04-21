@@ -13,8 +13,8 @@ local keys = {
   hide_search_highlight = ";",
   redo = "U",
   buffer = {
-    prev = "gj",
-    next = "gk",
+    prev = "<leader>j",
+    next = "<leader>k",
     move_prev = "gJ",
     move_next = "gK",
     pick = "<C-s>",
@@ -59,7 +59,7 @@ local keys = {
   },
   iswap = "<leader>s",
   lsp = {
-    code_action = "<leader>a",
+    code_action = "<leader>q",
     hover = "K",
     signature_help = "<c-k>",
     rename = "<leader>r",
@@ -79,12 +79,12 @@ local keys = {
     show_list = "<leader>l",
   },
   surround = {
-    add = "ma",
-    delete = "md",
-    find = "mf",
-    find_left = "mF",
-    highlight = "mh",
-    replace = "mr",
+    add = "sa",
+    delete = "sd",
+    find = "sf",
+    find_left = "sF",
+    highlight = "sh",
+    replace = "sr",
   },
   comment = {
     comment = "gc",
@@ -114,10 +114,10 @@ local keys = {
     scroll_docs_down = "<C-d>",
     scroll_docs_up = "<C-u>",
     complete = "<C-Space>",
-    next = "<C-n>",
-    previous = "<C-p>",
+    next = "<Tab>",
+    previous = "<S-Tab>",
     abort = "<C-c>",
-    confirm = "<C-y>",
+    confirm = "<Enter>",
   },
 }
 
