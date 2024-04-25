@@ -37,6 +37,11 @@ map("", "<leader>Y", '"+yg_')
 map("", "<leader>p", '"+p')
 map("", "<leader>P", '"+P')
 
+-- Pase over selection but don't modify register
+vmap("p", "P")
+-- Swap current selection with register
+vmap("P", "p")
+
 -- split
 nmap("<leader>sh", "<cmd>split<CR>")
 nmap("<leader>sv", "<cmd>vsplit<CR>")
