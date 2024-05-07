@@ -1,0 +1,135 @@
+// -*- mode: json -*-
+
+{
+  "layer": "top",
+  "position": "top",
+
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/right-arrow-dark"
+  ],
+  "modules-center": [
+  ],
+  "modules-right": [
+    "tray",
+    "custom/left-arrow-dark",
+    "mpris",
+    "custom/left-arrow-light",
+    "idle_inhibitor",
+    "custom/left-arrow-dark",
+    "pulseaudio",
+    "custom/left-arrow-light",
+    "network",
+    "custom/left-arrow-dark",
+    "power-profiles-daemon",
+    "custom/left-arrow-light",
+    "cpu",
+    "custom/left-arrow-dark",
+    "memory",
+    "custom/left-arrow-light",
+    "temperature",
+    "custom/left-arrow-dark",
+    "clock"
+  ],
+
+  "custom/left-arrow-dark": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/left-arrow-light": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/right-arrow-dark": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/right-arrow-light": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "hyprland/workspaces": {
+    "format": "{name} {icon}",
+    "format-icons": {
+      "active": "_",
+      "default": " "
+    },
+    "persistent-workspaces": {
+      "*": 10, // 5 workspaces by default on every monitor
+      "DP-1": [  1,  2,  3,  4,  5,  6,  7,  8,  9, 10 ],
+      "DP-3": [ 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ],
+      "HDMI-A-1": [ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ],
+      "HDMI-A-2": [ 31, 32, 33, 34, 35, 36, 37, 38, 39, 40 ],
+    }
+  },
+
+  "clock": {
+    "format": "{:%a %m-%d %T}",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume:2}%",
+    "format-bluetooth": "{icon}  {volume}%",
+    "format-muted": "MUTE",
+    "format-icons": {
+      "headphones": "",
+      "default": [
+        "",
+        ""
+      ]
+    },
+    "scroll-step": 5,
+    "on-click": "pamixer -t",
+    "on-click-right": "pavucontrol"
+  },
+  "memory": {
+    "interval": 5,
+    "format": "Mem {}%"
+  },
+  "network": {
+    "interval": 1,
+    "format-wifi": "{essid} {bandwidthUpBytes} {bandwidthDownBytes} ",
+    "format-ethernet": "{bandwidthUpBytes} {bandwidthDownBytes} ",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "{usage}% "
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "disk": {
+    "interval": 5,
+    "format": "Disk {percentage_used:2}%",
+    "path": "/"
+  },
+  "tray": {
+    "icon-size": 20
+  },
+   "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    // "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C "
+  },
+  "reload_style_on_change": true
+}
