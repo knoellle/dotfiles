@@ -87,8 +87,6 @@ nmap(keys.diagnostic.goto_prev, vim.diagnostic.goto_prev, { desc = "Go to previo
 nmap(keys.diagnostic.goto_next, vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 nmap(keys.diagnostic.open_float, vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 
-nmap("<Esc>", require("notify").dismiss)
-
 local M = {}
 M.map = map
 M.imap = imap
