@@ -2,7 +2,7 @@
 # Profile file. Runs on login.
 
 # Adds `~/.scripts` and all subdirectories to $PATH
-export PATH="$PATH:$HOME/bin:$(du -L "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$HOME/bin"
 export EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER="firefox"
@@ -48,3 +48,4 @@ export QT_STYLE_OVERRIDE=adwaita-dark
 export CALIBRE_USE_DARK_PALETTE=1
 
 # export RUST_BACKTRACE=1
+. "$HOME/.cargo/env"
