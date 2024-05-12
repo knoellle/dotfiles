@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Arbitrary but unique message tag
+msgTag="brightness"
+
+# Change the volume using alsa(might differ if you use pulseaudio)
+light "$@"
+
+# Query amixer for the current volume and whether or not the speaker is muted
+brightness="$(light -G | cut -d. -f1)"
+
+dunstify -a "brightness" -u low -t 1000 -i display-brightness-symbolic -h string:x-dunst-stack-tag:$msgTag -h int:value:"$brightness" "Brightness: ${brightness}%"
