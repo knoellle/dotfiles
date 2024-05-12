@@ -4,7 +4,7 @@ SCRIPT=`realpath $0`
 SCRIPTPATH=`dirname $SCRIPT`
 
 # set up fixed location for the dotfile repo
-ln -s $SCRIPTPATH -T ~/.dotfiles
+ln -sf $SCRIPTPATH -T ~/.dotfiles
 
 # homedir dotfiles
 ln -s ~/.dotfiles/.profile -T ~/.profile
