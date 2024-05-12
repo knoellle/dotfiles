@@ -13,15 +13,11 @@
   "modules-right": [
     "tray",
     "custom/left-arrow-dark",
-    "mpris",
-    "custom/left-arrow-light",
-    "idle_inhibitor",
-    "custom/left-arrow-dark",
     "pulseaudio",
     "custom/left-arrow-light",
     "network",
     "custom/left-arrow-dark",
-    "power-profiles-daemon",
+    "battery",
     "custom/left-arrow-light",
     "cpu",
     "custom/left-arrow-dark",
@@ -91,12 +87,16 @@
     "format": "{usage}% "
   },
   "battery": {
+    "interval": 1,
     "states": {
-      "good": 95,
+      "full": 90,
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon} {capacity}%",
+    "format-time": "{H}:{M}",
+    "format-charging": "{icon} {capacity}% {time} ▲{power:.0f}W",
+    "format-discharging": "{icon} {capacity}% {time} ▼{power:.0f}W",
+    "format-charging-full": "{icon} {capacity}%",
     "format-icons": [
       "",
       "",
