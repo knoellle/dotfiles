@@ -39,6 +39,7 @@ ln -s ~/.dotfiles/.config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
 mkdir -p ~/.config/alacritty
 ln -s ~/.dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty
 
+ln -sT ~/.dotfiles/.config/fish ~/.config/fish
 ln -sT ~/.dotfiles/.config/fuzzel ~/.config/fuzzel
 ln -sT ~/.dotfiles/.config/helix ~/.config/helix
 ln -sT ~/.dotfiles/.config/hypr ~/.config/hypr
