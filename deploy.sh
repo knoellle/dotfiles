@@ -44,6 +44,7 @@ ln -sT ~/.dotfiles/.config/fuzzel ~/.config/fuzzel
 ln -sT ~/.dotfiles/.config/helix ~/.config/helix
 ln -sT ~/.dotfiles/.config/hypr ~/.config/hypr
 ln -sT ~/.dotfiles/.config/kitty ~/.config/kitty
+ln -sT ~/.dotfiles/.config/ranger ~/.config/ranger
 ln -sT ~/.dotfiles/.config/waybar ~/.config/waybar
 ln -sT ~/.dotfiles/.config/zathura ~/.config/zathura
 ln -sT ~/.dotfiles/.config/zellij ~/.config/zellij
