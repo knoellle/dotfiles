@@ -49,3 +49,5 @@ export CALIBRE_USE_DARK_PALETTE=1
 
 # export RUST_BACKTRACE=1
 . "$HOME/.cargo/env"
+
+eval "$(ssh-agent -s)"
