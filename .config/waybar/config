@@ -50,6 +50,7 @@
   },
 
   "clock": {
+    "interval": 1,
     "format": "{:%a %m-%d %T}",
     "tooltip": false
   },
