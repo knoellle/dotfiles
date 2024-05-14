@@ -3,45 +3,44 @@
 SCRIPT=`realpath $0`
 SCRIPTPATH=`dirname $SCRIPT`
 
+function symlink() {
+  if [ -e $2 ] && [ ! -L $2 ]; then
+    echo "regular file exists at $2, not overriding!"
+    return
+  fi
+
+  if [ "$(readlink $2)" == $1 ]; then
+    # echo "$2 already correct, skipping"
+    return
+  fi
+
+  echo "creating link at $2"
+  $3 ln --symbolic --no-target-directory --force $1 $2
+}
+
 # set up fixed location for the dotfile repo
-ln -sf $SCRIPTPATH -T ~/.dotfiles
+symlink $SCRIPTPATH ~/.dotfiles
 
 # homedir dotfiles
-ln -s ~/.dotfiles/.profile -T ~/.profile
-ln -s ~/.dotfiles/.Xmodmap -T ~/.Xmodmap
-ln -s ~/.profile -T ~/.zprofile
-ln -s ~/.dotfiles/.zshrc -T ~/.zshrc
-ln -s ~/.dotfiles/.xinitrc -T ~/.xinitrc
+symlink ~/.dotfiles/.profile ~/.profile
+symlink ~/.dotfiles/.Xmodmap ~/.Xmodmap
+symlink ~/.profile ~/.zprofile
+symlink ~/.dotfiles/.zshrc ~/.zshrc
+symlink ~/.dotfiles/.xinitrc ~/.xinitrc
 
 # .config
 mkdir -p ~/.config/
 
-ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml
+for file in ~/.dotfiles/.config//*; do
+  symlink $file ~/.config/$(basename $file)
+done
 
-ln -sT ~/.dotfiles/.config/nvim ~/.config/nvim
-
-mkdir -p ~/.config/dunst
-ln -s ~/.dotfiles/.config/dunst/dunstrc ~/.config/dunst/dunstrc
-
-mkdir -p ~/.config/alacritty
-ln -s ~/.dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty
-
-ln -sT ~/.dotfiles/.config/fish ~/.config/fish
-ln -sT ~/.dotfiles/.config/fuzzel ~/.config/fuzzel
-ln -sT ~/.dotfiles/.config/helix ~/.config/helix
-ln -sT ~/.dotfiles/.config/hypr ~/.config/hypr
-ln -sT ~/.dotfiles/.config/kitty ~/.config/kitty
-ln -sT ~/.dotfiles/.config/ranger ~/.config/ranger
-ln -sT ~/.dotfiles/.config/waybar ~/.config/waybar
-ln -sT ~/.dotfiles/.config/zathura ~/.config/zathura
-ln -sT ~/.dotfiles/.config/zellij ~/.config/zellij
-
-ln -sT ./$(hostname).conf ~/.config/hypr/machines/current.conf
-
-sudo ln -sT ~/.dotfiles/.config/keyd /etc/keyd
+symlink ./$(hostname).conf ~/.config/hypr/machines/current.conf
 
 # ~/bin
 mkdir -p ~/bin
 for file in ~/.dotfiles/bin/*; do
-	ln -sT $file ~/bin/$(basename $file)
+  symlink $file ~/bin/$(basename $file)
 done
+
+symlink ~/.dotfiles/.config/keyd /etc/keyd sudo
