@@ -49,6 +49,8 @@ ln -sT ~/.dotfiles/.config/waybar ~/.config/waybar
 ln -sT ~/.dotfiles/.config/zathura ~/.config/zathura
 ln -sT ~/.dotfiles/.config/zellij ~/.config/zellij
 
+ln -sT ./$(hostname).conf ~/.config/hypr/machines/current.conf
+
 sudo ln -sT ~/.dotfiles/.config/keyd /etc/keyd
 
 # ~/bin
