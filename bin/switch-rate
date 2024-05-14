@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MONITOR="eDP-1,2560x1600@RATE,auto,1.25"
+MONITOR="eDP-1"
 
 RATE_AC="165.00"
 RATE_BATTERY="60.00"
@@ -26,6 +26,7 @@ udevadm monitor -s power_supply -u -p |
     else
       RATE=$RATE_BATTERY
     fi
-    echo Setting "$(echo $MONITOR | sed "s/@RATE,/@$RATE,/")"
-    hyprctl keyword monitor "$(echo $MONITOR | sed "s/@RATE,/@$RATE,/")"
+    PARAMETERS="$MONITOR, $(hyprctl -j monitors | jq --raw-output '.[] | select(.name=="'$MONITOR'") | [.width, "x", .height, "@'$RATE', ", .x, "x", .y, ", ", .scale] | join("")')"
+    echo Setting $PARAMETERS
+    hyprctl keyword monitor $PARAMETERS
   done
