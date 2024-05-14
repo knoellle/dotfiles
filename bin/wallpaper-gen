@@ -1,6 +1,0 @@
-#!/bin/bash
-export DISPLAY=:0
-cd "$(dirname "$0")"
-
-python wallpaper-gen.py
-DISPLAY=:0 feh /home/mystery/.config/awesome/themes/hulks-dark/wall.png --bg-scale
