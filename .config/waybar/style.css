@@ -5,15 +5,17 @@
 
 window#waybar {
 	background: #292b2e;
-	color: #fdf6e3;
+	color: #00FFFF;
 }
 
 #custom-right-arrow-dark,
-#custom-left-arrow-dark {
+#custom-left-arrow-dark
+{
 	color: #1a1a1a;
 }
 #custom-right-arrow-light,
-#custom-left-arrow-light {
+#custom-left-arrow-light
+{
 	color: #292b2e;
 	background: #1a1a1a;
 }
@@ -23,7 +25,9 @@ window#waybar {
 #pulseaudio,
 #power-profiles-daemon,
 #memory,
-#clock {
+#battery,
+#clock
+{
 	background: #1a1a1a;
 }
 
@@ -31,8 +35,11 @@ window#waybar {
 #idle_inhibitor,
 #network,
 #cpu,
-#temperature {
+#temperature
+#taskbar
+{
 	background: #292b2e;
+	color: #00ffff;
 }
 
 #temperature.critical {
@@ -41,13 +48,13 @@ window#waybar {
 
 #workspaces button {
 	padding: 0 2px;
-	color: #fdf6e3;
+	color: #00FFFF;
 }
 #workspaces button.empty {
-	color: #888888;
+	color: #008888;
 }
 #workspaces button.visible {
-	color: #C000FF;
+	color: #CC00FF;
 }
 #workspaces button.urgent {
   background: #660000;
@@ -57,7 +64,7 @@ window#waybar {
 	text-shadow: inherit;
 }
 #workspaces button:hover {
-	background: #1a1a1a;
+	background: #00FFFF;
 	border: #1a1a1a;
 	padding: 0 3px;
 }

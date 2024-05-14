@@ -90,7 +90,9 @@
   "battery": {
     "interval": 1,
     "states": {
-      "full": 90,
+      // semantic here is "below"! 90-100 is full
+      "full": 100,
+      "mid": 90,
       "warning": 30,
       "critical": 15
     },
