@@ -8,6 +8,20 @@ RATE_BATTERY="60.00"
 POWER_STATUS_FILE=/sys/class/power_supply/ACAD/online
 CHECK_DELAY_SECS=0.5
 
+switch ()
+{
+  RATE=$1
+  PARAMETERS="$MONITOR, $(hyprctl -j monitors | jq --raw-output '.[] | select(.name=="'$MONITOR'") | [.width, "x", .height, "@'$RATE', ", .x, "x", .y, ", ", .scale] | join("")')"
+  echo Setting $PARAMETERS
+  hyprctl keyword monitor $PARAMETERS
+}
+
+if [ ! -z "$1" ]; then
+  sleep $CHECK_DELAY_SECS
+  switch $1
+  exit
+fi
+
 # Use udev to detect power power supply events
 udevadm monitor -s power_supply -u -p |
   # unbuffered grep for online state
@@ -22,11 +36,8 @@ udevadm monitor -s power_supply -u -p |
     # don't trust the output from udev, there may be multiple power supplies
     # If there are two and one of them is unplugged, the other still provides power
     if [ "$(cat $POWER_STATUS_FILE)" == 1 ]; then
-      RATE=$RATE_AC
+      switch $RATE_AC
     else
-      RATE=$RATE_BATTERY
+      switch $RATE_BATTERY
     fi
-    PARAMETERS="$MONITOR, $(hyprctl -j monitors | jq --raw-output '.[] | select(.name=="'$MONITOR'") | [.width, "x", .height, "@'$RATE', ", .x, "x", .y, ", ", .scale] | join("")')"
-    echo Setting $PARAMETERS
-    hyprctl keyword monitor $PARAMETERS
   done
