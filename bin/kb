@@ -1,27 +1,5 @@
 #!/usr/bin/env sh
 
 MAC=90:7F:61:0F:C0:B7
-case $1 in
 
-    con*)
-        bluetoothctl connect $MAC
-        ;;
-
-    dis*)
-        bluetoothctl disconnect $MAC
-        ;;
-
-    rec*)
-        bluetoothctl disconnect $MAC
-        bluetoothctl connect $MAC
-        ;;
-
-    rep*)
-        bluetoothctl remove $MAC
-        timeout 3 bluetoothctl scan on
-        bluetoothctl connect $MAC
-        bluetoothctl pair $MAC
-        bluetoothctl trust $MAC
-        ;;
-
-esac
+exec bluetoothDevice $MAC $@

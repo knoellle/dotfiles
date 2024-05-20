@@ -1,0 +1,59 @@
+#!/usr/bin/env sh
+
+MAC="$1"
+
+bluetoothctl power on
+bluetoothctl scan on
+
+connect ()
+{
+        bluetoothctl connect $1
+}
+
+disconnect ()
+{
+        bluetoothctl disconnect $1
+}
+
+reconnect ()
+{
+        disconnect $1
+        connect $1
+}
+
+pair ()
+{
+        # check if devices is known
+        bluetoothctl devices | grep "$1" ||
+          (echo "waiting for $1..." && timeout 30 cat /dev/full | bluetoothctl | tee /proc/self/fd/2 | grep "$1" | head -n 1)
+        bluetoothctl connect $1
+        bluetoothctl pair $1
+        bluetoothctl trust $1
+}
+
+repair ()
+{
+         bluetoothctl remove $MAC
+         pair $MAC
+}
+
+case "$2" in
+    con*)
+        connect $MAC
+        ;;
+
+    dis*)
+        disconnect $MAC
+        ;;
+
+    rec*)
+        reconnect $MAC
+        ;;
+
+    rep*)
+        repair $MAC
+        ;;
+    pair)
+        pair $MAC
+        ;;
+esac
