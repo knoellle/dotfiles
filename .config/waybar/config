@@ -12,7 +12,7 @@
   ],
   "modules-right": [
     "custom/left-arrow-dark",
-    "pulseaudio",
+    "wireplumber",
     "custom/left-arrow-light",
     "network",
     "custom/left-arrow-dark",
@@ -55,7 +55,7 @@
     "tooltip": false
   },
 
-  "pulseaudio": {
+  "wireplumber": {
     "format": "{icon} {volume:2}%",
     "format-bluetooth": "{icon}  {volume}%",
     "format-muted": "MUTE",

@@ -22,7 +22,7 @@ window#waybar {
 
 #workspaces,
 #mpd,
-#pulseaudio,
+#wireplumber,
 #power-profiles-daemon,
 #memory,
 #battery,
@@ -69,7 +69,7 @@ window#waybar {
 	padding: 0 3px;
 }
 
-#pulseaudio {
+#wireplumber {
 	color: #268bd2;
 }
 #memory {
@@ -86,7 +86,7 @@ window#waybar {
 }
 
 #clock,
-#pulseaudio,
+#wireplumber,
 #memory,
 #cpu,
 #battery,
