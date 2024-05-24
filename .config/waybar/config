@@ -19,15 +19,20 @@
     "battery",
     "custom/left-arrow-light",
     "cpu",
+    "custom/spacing",
+    "temperature",
     "custom/left-arrow-dark",
     "memory",
     "custom/left-arrow-light",
-    "temperature",
     "custom/left-arrow-dark",
     "clock",
     "tray"
   ],
 
+  "custom/spacing": {
+    "format": " ",
+    "tooltip": false
+  },
   "custom/left-arrow-dark": {
     "format": "",
     "tooltip": false
