@@ -77,7 +77,7 @@
     "on-click-right": "pavucontrol"
   },
   "memory": {
-    "interval": 5,
+    "interval": 1,
     "format": "Mem {}%"
   },
   "network": {
@@ -96,9 +96,9 @@
   "battery": {
     "interval": 1,
     "states": {
-      // semantic here is "below"! 90-100 is full
+      // semantic here is <=, 90-100 is full!
       "full": 100,
-      "mid": 90,
+      "mid": 89,
       "warning": 30,
       "critical": 15
     },
