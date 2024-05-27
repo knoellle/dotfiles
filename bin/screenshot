@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+FILE=~/Pictures/screenshots/snapshot-$(date +%Y-%m-%d-%H-%M-%S).png && grim -g "$(slurp -d)" $FILE && wl-copy < $FILE
