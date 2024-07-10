@@ -98,7 +98,7 @@ class HVVClient(object):
 def parseTime(s):
     m = 0
     h = 0
-    ex = re.compile("([+\-]?\d+)([mh]?)")
+    ex = re.compile("([+-]?\\d+)([mh]?)")
     match = ex.findall(s)[0]
     if len(match) > 1:
         if match[1].lower() == "m":
