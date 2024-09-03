@@ -8,17 +8,19 @@ return {
     end,
     config = function()
       local opts = {
-        window = {
+        win = {
           border = "rounded",
-          winblend = 15,
+          wo = {
+            winblend = 15,
+          }
         }
       }
 
       local wk = require("which-key")
       wk.setup(opts)
-      wk.register({
-        ["<leader>h"] = { "Git Hunks" },
-        ["<leader>g"] = { "Git" },
+      wk.add({
+        { "<leader>h", desc = "Git Hunks" },
+        { "<leader>g", desc = "Git" },
       })
     end,
   },

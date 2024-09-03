@@ -17,7 +17,7 @@ local custom_server_setup = {
 local function setup_borders(opts)
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = opts.float.border })
   vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.float.border })
+      vim.lsp.with(vim.lsp.handlers.signature_help, { border = opts.float.border })
   require("lspconfig.ui.windows").default_options = { border = opts.float.border }
   vim.diagnostic.config(opts)
 end
@@ -78,7 +78,7 @@ return {
       setup_borders(opts.diagnostics)
 
       local capabilities =
-        require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+          require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
       local function setup_lsp_server(server)
         local server_options = require("plugins.lsp.server_options")[server] or {}
         local options = vim.tbl_deep_extend("force", {
@@ -101,15 +101,5 @@ return {
     "j-hui/fidget.nvim",
     lazy = true,
     opts = {},
-  },
-  {
-    "linux-cultist/venv-selector.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "nvim-telescope/telescope.nvim",
-    },
-    opts = {
-      name = { "venv", ".venv" },
-    },
   },
 }
