@@ -11,6 +11,7 @@
   "modules-center": [
   ],
   "modules-right": [
+    "custom/aliveness",
     "custom/left-arrow-dark",
     "wireplumber",
     "custom/left-arrow-light",
@@ -128,6 +129,10 @@
     "format": "{temperatureC}°C ",
     "critical-threshold": 80,
     "format-critical": "{temperatureC}°C "
+  },
+  "custom/aliveness": {
+    "exec": "~/bin/alivenessWidget | paste --serial --delimiters ' '",
+    "restart-interval": 1,
   },
   "reload_style_on_change": true
 }
