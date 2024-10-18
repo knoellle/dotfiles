@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-pepsi aliveness --json | jq --raw-output '[keys.[] | sub("10\\.1.24.(?<nr>.*)"; "\(.nr)") | sub("10.0.24.(?<nr>.*)"; "\(.nr)w")] | join (" ")'
+pepsi aliveness --json | jq --raw-output '[keys.[] | sub("10\\.1.24.(?<nr>.*)"; "\(.nr)") | sub("10.0.24.(?<nr>.*)"; "\(.nr)w")] | join ("\n")'
