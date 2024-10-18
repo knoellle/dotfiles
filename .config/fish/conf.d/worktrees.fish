@@ -10,7 +10,13 @@ function gwa
 end
 
 alias gwl="git worktree list"
+
 function gwj
   set -l WORKTREE "$(git worktree list | fzf | cut -d' ' -f1)"
   cd $WORKTREE
+end
+
+function gwd
+  set -l ORIGINAL_WORKTREE "$(git worktree list | head -n1 | cut -d' ' -f1)"
+  command git worktree remove "$(pwd)" && cd $ORIGINAL_WORKTREE
 end
