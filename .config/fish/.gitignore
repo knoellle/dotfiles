@@ -1,4 +1,12 @@
 completions
-conf.d/{direnv,fish-exa,fzf,git,plugin-sudope-,puffer_fish_key_bindings}.fish
 fish_variables
 functions
+
+conf.d/abbr_tips.fish
+conf.d/fish-exa.fish
+conf.d/fzf.fish
+conf.d/git.fish
+conf.d/plugin-sudope.fish
+conf.d/rustup.fish
+conf.d/puffer_fish_key_bindings.fish
+conf.d/direnv.fish
