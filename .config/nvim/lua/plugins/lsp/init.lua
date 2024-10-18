@@ -102,4 +102,10 @@ return {
     lazy = true,
     opts = {},
   },
+  {
+    "astral-sh/ruff-lsp",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+    },
+  },
 }
