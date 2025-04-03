@@ -2,4 +2,4 @@
 FILE=~/Pictures/screenshots/snapshot-$(date +%Y-%m-%d-%H-%M-%S).png
 
 grim -g "$(slurp -d)" $FILE && wl-copy < $FILE
-maim -s $FILE && xclip -selection clipboard $FILE -t image/png
+maim --select --hidecursor $FILE && xclip -selection clipboard $FILE -t image/png
