@@ -56,7 +56,8 @@ i3lock-multimonitor \
 --keylayout 2         \
 --refresh-rate=60     \
 $IMAGE \
-|| i3lock-multimonitor $IMAGE -a "-p win" # -c 000000
+|| i3lock-multimonitor $IMAGE -a "-p win" -c 000000 \
+|| i3lock $IMAGE -p win -c 000000
 
 # wait for i3lock to close
 tail --pid=$(pidof i3lock) -f /dev/null

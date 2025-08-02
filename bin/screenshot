@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 FILE=~/Pictures/screenshots/snapshot-$(date +%Y-%m-%d-%H-%M-%S).png
 
-grim -g "$(slurp -d)" $FILE && wl-copy < $FILE
-maim --select --hidecursor $FILE && xclip -selection clipboard $FILE -t image/png
+grim -g "$(slurp -d)" $FILE && wl-copy < $FILE && exit
+maim --select --hidecursor $FILE && xclip -selection clipboard $FILE -t image/png && exit
+echo "Neither grim nor maim worked, is a graphical environment running?"

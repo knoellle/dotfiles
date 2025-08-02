@@ -1,4 +1,4 @@
-theme = "ayu_dark"
+theme = "monokai"
 
 [editor]
 bufferline = "always"
@@ -17,30 +17,46 @@ tab = "all"
 newline = "none"
 
 [editor.whitespace.characters]
-space = "·"
+space = " "
 nbsp = "⍽"
 tab = "→"
 newline = "⏎"
-tabpad = "·"
+tabpad = " "
+
+[editor.indent-guides]
+render = true
+character = "┆"
+skip-levels = 1
 
 [editor.lsp]
-display-messages = true
+display-progress-messages = true
+display-inlay-hints = true
 
 [keys.normal]
 "K" = "hover"
 "0" = "goto_line_start"
 "$" = "goto_line_end"
+"%" = "@mm"
 "C-h" = "jump_view_left"
 "C-j" = "jump_view_down"
 "C-k" = "jump_view_up"
 "C-l" = "jump_view_right"
+"G" = "goto_file_end"
+"C-tab" = "goto_next_buffer"
+"S-C-tab" = "goto_previous_buffer"
 
 [keys.select]
 "0" = "goto_line_start"
 "$" = "goto_line_end"
 
 [keys.normal.space]
+"c" = ":buffer-close"
+"e" = "file_picker"
+"f" = ":format"
 "j" = "goto_previous_buffer"
 "k" = "goto_next_buffer"
-"e" = "file_picker"
-"c" = ":buffer-close"
+"q" = "code_action"
+"w" = ":write"
+
+[keys.normal."C-w"]
+"c" = "wclose"

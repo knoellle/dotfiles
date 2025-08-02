@@ -1,0 +1,10 @@
+#/bin/bash
+
+CONFIG_DIR="$HOME/.config/hypr"
+
+SELECTION=$(ls "$CONFIG_DIR/monitor-layouts/" | fuzzel -d)
+
+if [ -n "$SELECTION" ]
+then
+  ln -sf "$CONFIG_DIR/monitor-layouts/$SELECTION" "$CONFIG_DIR/current-monitors.conf"
+fi

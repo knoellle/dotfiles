@@ -8,11 +8,7 @@ local function register_lsp_attach(on_attach)
   })
 end
 
-local custom_server_setup = {
-  ["rust_analyzer"] = function(opts)
-    -- require("rust-tools").setup(opts)
-  end,
-}
+local custom_server_setup = {}
 
 local function setup_borders(opts)
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = opts.float.border })
@@ -29,17 +25,17 @@ local function setup_diagnostic_signs()
   end
 end
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  desc = "Auto select virtualenv Nvim open",
-  pattern = "*",
-  callback = function()
-    local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
-    if venv ~= "" then
-      require("venv-selector").retrieve_from_cache()
-    end
-  end,
-  once = true,
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   desc = "Auto select virtualenv Nvim open",
+--   pattern = "*",
+--   callback = function()
+--     local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
+--     if venv ~= "" then
+--       require("venv-selector").retrieve_from_cache()
+--     end
+--   end,
+--   once = true,
+-- })
 
 return {
   {
@@ -110,7 +106,7 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "^4",
+    version = "^5",
     lazy = false,
     config = function()
       vim.g.rustaceanvim = {
@@ -124,17 +120,17 @@ return {
           cmd = { "rustup", "run", "stable", "rust-analyzer" },
           default_settings = {
             ["rust-analyzer"] = {
-              -- cargo = {
-              --   features = "all",
-              -- },
-              -- imports = {
-              --   granularity = {
-              --     enforce = true,
-              --   },
-              -- },
-              -- check = {
-              --   command = "clippy",
-              -- },
+              cargo = {
+                features = "all",
+              },
+              imports = {
+                granularity = {
+                  enforce = true,
+                },
+              },
+              check = {
+                command = "clippy",
+              },
             },
           },
         },

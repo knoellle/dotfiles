@@ -1,4 +1,5 @@
 set PATH $PATH /home/mystery/.local/bin
+set -Ux HULK_DEFAULT_ROOT /home/mystery/hulks/hulk/
 
 # disable standard fish greeting
 set fish_greeting

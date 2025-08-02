@@ -1,0 +1,45 @@
+profile internal-battery {
+  output eDP-1 mode 2560x1600@60.00Hz scale 1.25
+}
+
+profile internal-ac {
+  output eDP-1 mode 2560x1600@165.00Hz scale 1.25
+}
+
+profile lab-large {
+  output "Dell Inc. DELL P3222QE 915S6H3" mode 3840x2160@60.00Hz position 0,0
+  # internal screen centered below
+  output eDP-1 mode 2560x1600@165.00Hz position 896,2160 scale 1.25
+}
+
+profile lab-large2 {
+  output "Dell Inc. DELL P3222QE 105S6H3" mode 3840x2160@60.00Hz position 0,0
+  # internal screen centered below
+  output eDP-1 mode 2560x1600@165.00Hz position 896,2160 scale 1.25
+}
+
+profile lab-medium {
+  output "Dell Inc. DELL P2723DE 23SM5V3" mode 2560x1440@59.95Hz position 0,0
+  # internal screen centered below
+  output eDP-1 mode 2560x1600@165.00Hz position 256,1440 scale 1.25
+
+}
+
+profile home-below {
+  output "BNQ BenQ EX2780Q W4L08868019" mode 2560x1440@144Hz position 0,0
+  # internal screen centered below
+  output eDP-1 mode 2560x1600@165.00Hz position 256,1440 scale 1.25
+}
+
+profile home-left {
+  output eDP-1 mode 2560x1600@165.00Hz position 0,416 scale 1.25
+  output "BNQ BenQ EX2780Q W4L08868019" mode 2560x1440@144Hz position 2048,0
+  # internal screen centered below
+}
+
+profile home-bottom-row {
+  output eDP-1 mode 2560x1600@165.00Hz position 0,416 scale 1.25
+  output "BNQ BenQ EX2780Q W4L08868019" mode 2560x1440@144Hz position 2048,0
+  output "Ancor Communications Inc ASUS PB278 E6LMTF130449" mode 2560x1440@60Hz position 4608,0
+  # internal screen centered below
+}

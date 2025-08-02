@@ -4,7 +4,7 @@
 export PATH="$HOME/bin:$HOME/.cargo/bin:/usr/sbin:/sbin:/bin:/usr/games:$HOME/.nix-profile/bin/:/usr/lib/ccache/bin:$HOME/helperScripts:$HOME/.local/bin/:$GEM_HOME/bin:$PATH"
 
 export EDITOR="nvim"
-export TERMINAL="kitty"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 export READER="zathura"
 export FILE="ranger"

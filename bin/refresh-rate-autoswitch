@@ -32,6 +32,7 @@ udevadm monitor -s power_supply -u -p |
   do
     # wait because the state in /sys/ seems to be delayed
     sleep $CHECK_DELAY_SECS
+    echo $line
 
     # don't trust the output from udev, there may be multiple power supplies
     # If there are two and one of them is unplugged, the other still provides power

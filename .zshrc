@@ -247,7 +247,7 @@ function alert
 
 function fix-routes
 {
-  ssh nao@10.1.24.$1 -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null "sudo ip r add 10.2.0.0/16 dev enp4s0 via 10.1.24.1"
+  ssh nao@10.1.24.$1 -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null "sudo ip r add 10.0.0.0/8 via 10.1.24.1"
 }
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then

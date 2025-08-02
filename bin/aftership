@@ -1,0 +1,77 @@
+#!/bin/python
+
+# curl 'https://track.aftership.com/api/v2/direct-trackings/batch'
+# -X POST
+# -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0'
+# -H 'Accept: application/json, text/plain, */*'
+# -H 'Accept-Language: en,en-US;q=0.5'
+# -H 'Accept-Encoding: gzip, deflate, br, zstd'
+# -H 'Content-Type: application/json'
+# -H 'am-sign-time: 1720438349'
+# -H 'am-sign-version: v1'
+# -H 'digest: k9ITzgNJ32xX0wIKecOmxA=='
+# -H 'authorization: hmac username="track.aftership.com", algorithm="hmac-sha256", headers="digest", signature="q+GctdPNmjup5wbrCDk13T1idDhOF4Ya6GS8+SHp2qs="'
+# -H 'Origin: https://www.aftership.com'
+# -H 'DNT: 1'
+# -H 'Sec-GPC: 1'
+# -H 'Connection: keep-alive'
+# -H 'Referer: https://www.aftership.com/'
+# -H 'Sec-Fetch-Dest: empty'
+# -H 'Sec-Fetch-Mode: cors'
+# -H 'Sec-Fetch-Site: same-site'
+# -H 'Priority: u=1'
+# -H 'TE: trailers'
+# --data-raw '{"direct_trackings":[{"tracking_number":"202406170144FQ3PG4","additional_fields":{},"slug":""}],"translate_to":"en"}'
+
+import requests
+import hmac
+import hashlib
+import time
+
+sign_time = "1720438349"  # str(round(time.time()))
+
+payload = {
+    "direct_trackings": [
+        {"tracking_number": "202406170144FQ3PG4", "additional_fields": {}, "slug": ""}
+    ],
+    "translate_to": "en",
+}
+headers = {
+    "am-sign-time": sign_time,
+    "am-sign-version": "v1",
+}
+
+request = requests.Request(
+    "POST",
+    "https://track.aftership.com/api/v2/direct-trackings/batch",
+    data=payload,
+    headers=headers,
+)
+prepped = request.prepare()
+body = prepped.body
+
+c = [
+    "POST /api/v2/direct-trackings/batch track.aftership.com",
+    "am-sign-time: " + sign_time,
+    "am-sign-version: v1",
+    "digest: " + "k9ITzgNJ32xX0wIKecOmxA==",
+]
+
+digest_input = "\n".join(c)
+
+if not isinstance(body, bytes):  # Python 3
+    body = body.encode("latin1")  # standard encoding for HTTP
+signature = hmac.new(
+    b"8eMrcmkiElSWiwCSrQrSSfAlG11rLHz1",
+    digest_input.encode("latin1"),
+    digestmod=hashlib.sha512,
+)
+prepped.headers["authorization"] = (
+    f'hmac username="track.aftership.com", algorithm="hmac-sha256", headers="digest", signature="{signature.hexdigest()}"'
+)
+import base64
+
+print(base64.b32encode(signature.digest()))
+
+# with requests.Session() as session:
+#     response = session.send(prepped)

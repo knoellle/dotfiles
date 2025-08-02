@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+MAC=08:DF:1F:8D:62:51
+
+exec bluetoothDevice $MAC $@

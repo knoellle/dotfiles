@@ -9,7 +9,7 @@ setxkbmap -option shift:both_capslock
 setxkbmap -option eurosign:e
 xmodmap ~/.Xmodmap
 set r 66
-xsetwacom --set 'Wacom ISDv4 E6 Finger touch' Gesture off
+# xsetwacom --set 'Wacom ISDv4 E6 Finger touch' Gesture off
 
 # don't blank screen after inactivity
 xset s off

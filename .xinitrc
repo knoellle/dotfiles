@@ -1,8 +1,8 @@
 #!/bin/sh
 # xss-lock --ignore-sleep -- locknow &
-/usr/lib/geoclue-2.0/demos/agent &
+# /usr/lib/geoclue-2.0/demos/agent &
 # mpd
-spawn
+# spawn
 setxkbmap us cz_sk_de
 nm-applet &
 fusuma &
