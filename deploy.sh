@@ -28,10 +28,10 @@ symlink ~/.profile ~/.zprofile
 symlink ~/.dotfiles/.zshrc ~/.zshrc
 symlink ~/.dotfiles/.xinitrc ~/.xinitrc
 
-# .config
+# ~/.config
 mkdir -p ~/.config/
 
-for file in ~/.dotfiles/.config//*; do
+for file in ~/.dotfiles/config//*; do
   symlink $file ~/.config/$(basename $file)
 done
 
