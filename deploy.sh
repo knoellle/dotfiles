@@ -43,4 +43,4 @@ for file in ~/.dotfiles/bin/*; do
   symlink $file ~/bin/$(basename $file)
 done
 
-symlink ~/.dotfiles/.config/keyd /etc/keyd sudo
+symlink ~/.dotfiles/config/keyd /etc/keyd sudo
