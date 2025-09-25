@@ -24,4 +24,4 @@ echo Targets: ${targets[@]}
 echo Action: ${action[@]}
 echo
 
-inotifywait -m -e modify -e create -e move ${targets[@]} | while read; do ${action[@]}; done
+inotifywait -m -e modify -e create -e move -e move_self ${targets[@]} | while read; do ${action[@]}; done
