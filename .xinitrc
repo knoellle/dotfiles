@@ -10,6 +10,7 @@ numlockx &
 xss-lock -l -- locknow &
 ckb-next -b &
 noisetorch -i &
+kdeconnectd &
 
 # fix polkit stuff
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh &
