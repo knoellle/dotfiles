@@ -20,6 +20,11 @@ window#waybar {
 	background: #1a1a1a;
 }
 
+#custom-microphone.muted
+{
+	color: red;
+}
+
 #workspaces,
 #mpd,
 #wireplumber,

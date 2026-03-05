@@ -11,6 +11,7 @@
   "modules-center": [
   ],
   "modules-right": [
+    "custom/microphone",
     "custom/left-arrow-dark",
     "wireplumber",
     "custom/left-arrow-light",
@@ -49,6 +50,12 @@
   "custom/right-arrow-light": {
     "format": "",
     "tooltip": false
+  },
+  "custom/microphone": {
+    "exec": "mic-mute-status.sh",
+    "return-type": "json",
+    "interval": 10,
+    "signal": 1
   },
 
   "hyprland/workspaces": {
